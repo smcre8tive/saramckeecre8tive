@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructional Design Case Study</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@300&family=Lexend:wght@300&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            font-weight: 300;
+            line-height: 1.6;
+            color: #333;
+            background-color: #faf8f6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-family: 'Lora', serif;
+            font-weight: 300;
+            font-size: 3.5rem;
+            color: #CF9F87;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .section {
+            margin-bottom: 100px;
+        }
+
+        h2 {
+            font-family: 'Lora', serif;
+            font-weight: 300;
+            font-size: 2.5rem;
+            color: #CF9F87;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #CF9F87;
+            padding-bottom: 10px;
+        }
+
+        .section-content {
+            margin-bottom: 40px;
+            font-size: 1.05rem;
+            color: #555;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .image-item {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover {
+            transform: scale(1.03);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-caption {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #666;
+            text-align: center;
+        }
+
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+            animation: scaleIn 0.3s ease;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 1.1rem;
+            padding: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            z-index: 1001;
+            transition: color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            color: #CF9F87;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
+        }
+
+        /* Floating menu styles */
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #CF9F87;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background-color: #b88970;
+            transform: scale(1.05);
+        }
+
+        .floating-menu {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            z-index: 998;
+            min-width: 200px;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+        }
+
+        .floating-menu.active {
+            transform: translateX(0);
+        }
+
+        .floating-menu h3 {
+            font-family: 'Lora', serif;
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: #CF9F87;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #CF9F87;
+            padding-bottom: 8px;
+        }
+
+        .floating-menu ul {
+            list-style: none;
+        }
+
+        .floating-menu li {
+            margin-bottom: 12px;
+        }
+
+        .floating-menu a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .floating-menu a:hover {
+            color: #CF9F87;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lightbox-close {
+                top: 10px;
+                right: 20px;
+                font-size: 30px;
+            }
+
+            .floating-menu {
+                right: 10px;
+                min-width: 180px;
+                padding: 20px;
+            }
+
+            .menu-toggle {
+                top: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Menu Toggle -->
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+        ☰
+    </button>
+
+    <!-- Floating Navigation Menu -->
+    <nav class="floating-menu" id="floatingMenu">
+        <h3>Quick Navigation</h3>
+        <ul>
+            <li><a href="#analysis" onclick="scrollToSection('analysis')">Analysis</a></li>
+            <li><a href="#design" onclick="scrollToSection('design')">Design</a></li>
+            <li><a href="#development" onclick="scrollToSection('development')">Development</a></li>
+            <li><a href="#implementation" onclick="scrollToSection('implementation')">Implementation</a></li>
+            <li><a href="#evaluation" onclick="scrollToSection('evaluation')">Evaluation</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>E-Learning Course Development</h1>
+        <p class="intro">
+            A comprehensive case study documenting the instructional design process for developing an interactive compliance training program for a Fortune 500 financial services company. This project transformed complex regulatory content into engaging, learner-centered modules.
+        </p>
+
+        <!-- Analysis Section -->
+        <div class="section" id="analysis">
+            <h2>Analysis</h2>
+            <div class="section-content">
+                <p>The analysis phase involved extensive stakeholder interviews, learner surveys, and content audits. We identified key performance gaps and established clear learning objectives aligned with business goals. Through needs assessment workshops, we discovered that employees struggled with applying compliance knowledge to real-world scenarios, leading us to prioritize scenario-based learning approaches.</p>
+            </div>
+            <div class="image-grid">
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Stakeholder+Interviews" alt="Stakeholder interviews">
+                    <p class="image-caption">Stakeholder interviews revealed critical training gaps and business priorities</p>
+                </div>
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Learner+Survey+Results" alt="Survey results">
+                    <p class="image-caption">Survey data showing learner preferences and current knowledge levels</p>
+                </div>
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Performance+Gap+Analysis" alt="Gap analysis">
+                    <p class="image-caption">Visual mapping of performance gaps between current and desired states</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design Section -->
+        <div class="section" id="design">
+            <h2>Design</h2>
+            <div class="section-content">
+                <p>During the design phase, we created detailed blueprints for the learning experience. Storyboards mapped out each interaction, while wireframes established the user interface structure. We developed a comprehensive style guide to ensure visual consistency and incorporated microlearning principles to support busy professionals. The instructional strategy emphasized active learning through branching scenarios and formative assessments.</p>
+            </div>
+            <div class="image-grid">
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Storyboard+Samples" alt="Storyboards">
+                    <p class="image-caption">Detailed storyboards outlining content flow and interactions</p>
+                </div>
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=UI+Wireframes" alt="Wireframes">
+                    <p class="image-caption">Low-fidelity wireframes defining navigation and layout structure</p>
+                </div>
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Style+Guide" alt="Style guide">
+                    <p class="image-caption">Visual style guide establishing color palettes, typography, and brand elements</p>
+                </div>
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Learning+Objectives+Map" alt="Objectives map">
+                    <p class="image-caption">Hierarchical mapping of learning objectives to course modules</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Development Section -->
+        <div class="section" id="development">
+            <h2>Development</h2>
+            <div class="section-content">
+                <p>The development phase brought our designs to life using Articulate Storyline 360 and Adobe Creative Suite. We built interactive scenarios with realistic dialogue, created custom graphics and animations, and programmed complex branching logic. Regular reviews with subject matter experts ensured content accuracy, while iterative prototyping allowed us to refine interactions based on early feedback. Accessibility features were integrated from the ground up to ensure WCAG 2.1 AA compliance.</p>
+            </div>
+            <div class="image-grid">
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Development+Environment" alt="Development">
+                    <p class="image-caption">Articulate Storyline workspace during course assembly</p>
+                </div>
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Interactive+Scenarios" alt="Scenarios">
+                    <p class="image-caption">Branching scenario allowing learners to make critical decisions</p>
+                </div>
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Custom+Graphics" alt="Graphics">
+                    <p class="image-caption">Custom illustrations designed to clarify complex compliance concepts</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation Section -->
+        <div class="section" id="implementation">
+            <h2>Implementation</h2>
+            <div class="section-content">
+                <p>Implementation involved deploying the course to the company's learning management system and orchestrating a phased rollout strategy. We conducted train-the-trainer sessions for department leaders, created quick reference guides, and established a support system for technical issues. Change management communications emphasized the value proposition to learners, while gamification elements and completion incentives drove engagement. The pilot group's feedback led to minor refinements before full deployment.</p>
+            </div>
+            <div class="image-grid">
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=LMS+Integration" alt="LMS">
+                    <p class="image-caption">Course successfully integrated into the enterprise LMS platform</p>
+                </div>
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Launch+Communications" alt="Communications">
+                    <p class="image-caption">Email campaign announcing course launch and highlighting key benefits</p>
+                </div>
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Training+Sessions" alt="Training">
+                    <p class="image-caption">Facilitator-led sessions introducing employees to the new training program</p>
+                </div>
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Rollout+Timeline" alt="Timeline">
+                    <p class="image-caption">Phased rollout schedule across different departments and regions</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Evaluation Section -->
+        <div class="section" id="evaluation">
+            <h2>Evaluation</h2>
+            <div class="section-content">
+                <p>Comprehensive evaluation measured impact at multiple levels using the Kirkpatrick model. Learner satisfaction surveys revealed a 94% approval rating, with participants praising the practical scenarios and clean interface. Knowledge assessments showed a 37% improvement in post-training scores compared to the previous program. Six months post-launch, compliance audit results demonstrated measurable behavior change, with policy violations decreasing by 28%. Business metrics indicated a positive ROI through reduced regulatory risks and improved operational efficiency.</p>
+            </div>
+            <div class="image-grid">
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Satisfaction+Scores" alt="Satisfaction">
+                    <p class="image-caption">Learner satisfaction metrics showing high engagement and positive feedback</p>
+                </div>
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Knowledge+Gains" alt="Knowledge">
+                    <p class="image-caption">Pre and post-assessment data demonstrating significant knowledge improvement</p>
+                </div>
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=Behavior+Change+Data" alt="Behavior">
+                    <p class="image-caption">On-the-job performance data showing improved compliance behaviors</p>
+                </div>
+                <div class="image-item" onclick="openLightbox(this)">
+                    <img src="https://placehold.co/600x400/CF9F87/ffffff?text=ROI+Analysis" alt="ROI">
+                    <p class="image-caption">Return on investment analysis demonstrating business impact</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <script>
+        let menuOpen = false;
+
+        function toggleMenu() {
+            menuOpen = !menuOpen;
+            const menu = document.getElementById('floatingMenu');
+            if (menuOpen) {
+                menu.classList.add('active');
+            } else {
+                menu.classList.remove('active');
+            }
+        }
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Optional: close menu after clicking on mobile
+                if (window.innerWidth < 768) {
+                    toggleMenu();
+                }
+            }
+        }
+
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            const caption = element.querySelector('.image-caption').textContent;
+            
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox-caption').textContent = caption;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
