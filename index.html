@@ -36,8 +36,15 @@
             color: #4a4a4a;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1, h2, h3, h4, h5 {
             font-family: 'Lora', serif;
+        }
+
+        h6 {
+            font-family: 'Lexend', sans-serif;
+            color: #CF9F87;
+            font-weight: 500;
+            text-transform: uppercase;
         }
 
         /* Navigation Bar */
@@ -250,16 +257,16 @@
 
         .card-title {
             font-size: 1.5rem;
-            font-weight: 500;
+            font-weight: 300;
             margin-bottom: 15px;
-            color: #2a2a2a;
+            color: #4a4a4a;
             letter-spacing: 0.5px;
             font-family: 'Lora', serif;
         }
 
         .card-description {
             font-size: 0.95rem;
-            color: #5a5a5a;
+            color: #4a4a4a;
             line-height: 1.6;
             flex: 1;
             margin-bottom: 20px;
@@ -473,7 +480,7 @@
         <!-- Hero Section -->
         <section id="home" class="hero-section">
             <h1 class="hero-title">Hi, I'm Sara McKee</h1>
-            <p class="hero-subtitle">I design creative, interactive <strong>digital products</strong> and learning experiences that are user-focused, engaging, and accessible.</p>
+            <p class="hero-subtitle">I design creative, interactive <strong>digital product</strong> experiences that are human-centered and research based.</p>
         </section>
 
         <!-- Projects Section -->
@@ -515,6 +522,7 @@
         const projects = [
             {
                 title: "IncluDesign",
+                category: "Interaction Design",
                 description: "Multi-product ecosystem for design students builds empathy through a visual-imparment simulaiton immersive projector game.",
                 image: source="img/includesign/hero.png" 
             },
@@ -565,8 +573,8 @@
                 <div class="card-content">
                     <div class="card-image" style="background-image: url('${project.image}');"></div>
                     <div class="card-body">
-                        <h4 class="project-category">${project.category}</h4>
-                        <h3 class="card-title">${project.title}</h3>
+                        <h6 class="project-category">${project.category}</h6>
+                        <h4 class="card-title"> <strong>${project.title}</h4>
                         <p class="card-description">${project.description}</p>
                         <button class="card-button">View Project</button>
                     </div>
