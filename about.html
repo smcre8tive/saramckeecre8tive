@@ -67,7 +67,7 @@
         body {
             font-family: 'Lexend', sans-serif;
             font-weight: 300;
-            color: #333;
+            color: #424242;
             line-height: 1.6;
         }
 
@@ -76,6 +76,7 @@
             margin: 0 auto;
             padding: 80px 40px;
             display: grid;
+            grid-template-areas: "text image";
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
@@ -87,28 +88,29 @@
             font-size: 3.5rem;
             color: #CF9F87;
             margin-bottom: 20px;
-        }
-
-        .hero-content h2 {
-            font-family: 'Lexend', sans-serif;
-            font-weight: 300;
-            font-size: 1.5rem;
-            color: #666;
-            margin-bottom: 30px;
+            margin-top: 20px;
         }
 
         .hero-content p {
+            grid-area: text;
             font-size: 1.1rem;
-            color: #555;
+            color: #424242;
             line-height: 1.8;
         }
 
         .hero-image {
-            width: 100%;
-            height: 500px;
-            background: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=80') center/cover;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(207, 159, 135, 0.2);
+            margin-top: 50px;
+            grid-area: image;
+            border-radius: 50%;
+            width: 250px;
+            height: 250px;
+            max-width: 90vw;
+            aspect-ratio: 1 / 1;
+            background-image: url("img/about/headshot.jpg");
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            justify-self: center;
         }
 
         .experience-section {
@@ -149,13 +151,13 @@
             font-family: 'Lexend', sans-serif;
             font-weight: 300;
             font-size: 1.2rem;
-            color: #666;
+            color: #424242;
             margin-bottom: 20px;
         }
 
         .card p {
             font-size: 1rem;
-            color: #555;
+            color: #424242;
             margin-bottom: 30px;
             line-height: 1.8;
         }
@@ -220,27 +222,37 @@
             transform: translateY(-3px);
         }
 
-        @media (max-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr;
-                padding: 40px 20px;
-            }
+    @media (max-width: 768px) {
+        .hero {
+            grid-template-columns: 1fr; /* Changes to a single column layout */
+            grid-template-areas:
+            "image" /* Places the image grid area at the top */
+            "text";  /* Places the text grid area below the image */
+            padding: 40px 20px;
+            justify-items: center; /* Centers items horizontally */
+        }
 
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
+        .hero-content {
+            grid-area: text; /* Assigns the grid area name "text" */
+        }
 
-            .hero-image {
-                height: 350px;
-            }
+        .hero-image {
+            grid-area: image; /* Assigns the grid area name "image" */
+            max-width: 100%; /* Ensures the image never exceeds its container's width */
+            height: auto;    /* Automatically adjusts height to maintain aspect ratio */
+        }
 
-            .experience-section {
-                padding: 50px 20px;
-            }
+        .hero-content h1 {
+        font-size: 2.5rem;
+        }
 
-            .card {
-                padding: 30px;
-            }
+        .experience-section {
+            padding: 50px 20px;
+        }
+
+        .card {
+            padding: 30px;
+        }
         }
     </style>
 </head>
@@ -256,8 +268,10 @@
     <section class="hero">
         <div class="hero-content">
             <h1>About Me</h1>
-            <h2>Artist & Educator</h2>
-            <p>Welcome to my creative space. I'm passionate about exploring the intersection of art and education, inspiring students to discover their own artistic voice while continuously developing my craft. Through my work, I strive to create meaningful connections and foster creativity in all its forms.</p>
+            <p>Welcome to my creative space! I'm a Texas based designer with a background in art education. My experience as an art teacher and work with an early stage ed-tech startup, allows me to design solutions 
+            that improve engagement and accessibility for diverse users. </p>
+            <p>I love collaborating with cross-functional teams to turn insights into meaningful design solutions. I’m excited about opportunities where I can apply my research-driven approach to enhance user experiences.<p>
+            <p>When I am not designing, you can find me reading, making art, taking a yoga class, traveling or spending time with my husband and two kitties.</p>
         </div>
         <div class="hero-image"></div>
     </section>
