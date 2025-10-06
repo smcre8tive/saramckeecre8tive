@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sara McKee - Portfolio</title>
+    <title>Sara McKee - Design Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -110,7 +110,7 @@
             color: #4a4a4a;
             font-weight: 300;
             font-family: 'Lexend', sans-serif;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
 
         .hero-subtitle strong {
@@ -265,6 +265,9 @@
         }
 
         .card-button {
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
             position: relative;
             z-index: 10;
             pointer-events: auto;
@@ -520,7 +523,8 @@
                 title: "IncluDesign Immersive Projector Game",
                 category: "Interaction Design",
                 description: "Multi-product inclusive design learning ecosystem and immersive projector game for design students.",
-                image: "img/includesign/hero.jpeg"
+                image: "img/includesign/hero.jpeg",
+                link: "includesign.html"
             },
                  
             {
@@ -550,6 +554,20 @@
                 description: "Redesigning an artist's website to enhance user experience and boost art sales.",
                 image: "img/evakonopka/hero.jpeg"
             },
+
+            {
+                title: "Sustainabode Native Andriod & iOS Home Hunting App",
+                category: "UX/UI Design",
+                description: "Helping eco-conscious home buyers find sustainable homes with ease.",
+                image: "img/sustainabode/mockmap.jpeg"
+            },
+
+            {
+                title: "ArtClass Course Booking Web-App",
+                category: "UX/UI Design",
+                description: "Making accessible art class booking easy and fun for everyone.",
+                image: "img/artclass/hero.jpeg"
+            },
           
         ];
 
@@ -576,7 +594,7 @@
                         <h6 class="project-category">${project.category}</h6>
                         <h4 class="card-title"><strong>${project.title}</strong></h4>
                         <p class="card-description">${project.description}</p>
-                        <button class="card-button">View Project</button>
+                        <a href="${project.link}" class="card-button">View Project</a>
                     </div>
                 </div>
             `;

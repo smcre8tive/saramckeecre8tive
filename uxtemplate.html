@@ -546,8 +546,143 @@
             </div>
 
             <p>The redesign also led to a 28% increase in feature adoption and a 40% reduction in support tickets related to navigation confusion. These results validated our user-centered design approach and provided valuable insights for future iterations.</p>
+            <div class="case-study-nav">
+                <div class="nav-container">
+                    <div class="next-case">
+                    <p class="nav-label">Next Project</p>
+                    <a href="#next-project" class="next-link">
+                        <span>Brand Identity for Artisan Bakery</span>
+                        <svg class="arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+            </div>
+
+            <a href="#top" class="back-top">
+                <svg class="arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 19V5M5 12l7-7 7 7"/>
+                </svg>
+                <span>Back to Top</span>
+            </a>
         </div>
     </div>
+    <style>
+        .case-study-nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        border-top: 2px solid #e5e5e5;
+        padding-top: 3rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+        .case-study-nav .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+    }
+
+        .case-study-nav .next-case {
+        flex: 1;
+    }
+
+        .case-study-nav .nav-label {
+        font-family: 'Lexend', sans-serif;
+        font-size: 0.875rem;
+        color: #9ca3af;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.75rem;
+        font-weight: 400;
+    }
+
+    .case-study-nav .next-link {
+        font-family: 'Lora', serif;
+        font-size: 2rem;
+        font-weight: 600;
+        color: #1f2937;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .case-study-nav .next-link::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #CF9F87;
+        transition: width 0.3s ease;
+    }
+
+    .case-study-nav .next-link:hover {
+        color: #CF9F87;
+    }
+
+    .case-study-nav .next-link:hover::after {
+        width: calc(100% - 40px);
+    }
+
+    .case-study-nav .arrow-right {
+        width: 28px;
+        height: 28px;
+        transition: transform 0.3s ease;
+    }
+
+    .case-study-nav .next-link:hover .arrow-right {
+        transform: translateX(6px);
+    }
+
+    .case-study-nav .back-top {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        color: #6b7280;
+        font-family: 'Lexend', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 400;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+    }
+
+    .case-study-nav .back-top:hover {
+        color: #CF9F87;
+        background: #f9f9f9;
+    }
+
+    .case-study-nav .arrow-up {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.3s ease;
+    }
+
+    .case-study-nav .back-top:hover .arrow-up {
+        transform: translateY(-3px);
+    }
+
+  @media (max-width: 768px) {
+    .case-study-nav .nav-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .case-study-nav .next-link {
+      font-size: 1.5rem;
+    }
+
+    .case-study-nav .back-top {
+      align-self: flex-end;
+    }
+  }
+</style>
 
     <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
         <div class="lightbox-content">
