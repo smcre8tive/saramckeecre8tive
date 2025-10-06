@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <style>
             /* Navigation Bar */
         nav {
@@ -86,7 +87,7 @@
             font-family: 'Lora', serif;
             font-weight: 300;
             font-size: 3.5rem;
-            color: #CF9F87;
+            color: #424242;
             margin-bottom: 20px;
             margin-top: 20px;
         }
@@ -102,8 +103,8 @@
             margin-top: 50px;
             grid-area: image;
             border-radius: 50%;
-            width: 250px;
-            height: 250px;
+            width: 400px;
+            height: 400px;
             max-width: 90vw;
             aspect-ratio: 1 / 1;
             background-image: url("img/about/headshot.jpg");
@@ -143,7 +144,7 @@
             font-family: 'Lora', serif;
             font-weight: 300;
             font-size: 2rem;
-            color: #CF9F87;
+            color: #424242;
             margin-bottom: 15px;
         }
 
@@ -161,6 +162,16 @@
             margin-bottom: 30px;
             line-height: 1.8;
         }
+        .card img {
+            width: 100%;
+            height: 200px;           /* Fixed height for uniformity */
+            object-fit: cover;       /* Crops to fill the space */
+            display: block;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-bottom: 20px;
+        }
+
 
         .button-group {
             display: flex;
@@ -221,6 +232,7 @@
             background: rgba(207, 159, 135, 0.2);
             transform: translateY(-3px);
         }
+        
 
     @media (max-width: 768px) {
         .hero {
@@ -249,11 +261,7 @@
         .experience-section {
             padding: 50px 20px;
         }
-
-        .card {
-            padding: 30px;
-        }
-        }
+    }
     </style>
 </head>
 <body>
@@ -262,15 +270,13 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="https://drive.google.com/file/d/1sS4twDhUD-qvhKPzjv6B8NfV_LuKf29L/view?usp=drive_link">Resume</a></li>
+            <li><a href="https://drive.google.com/file/d/1sS4twDhUD-qvhKPzjv6B8NfV_LuKf29L/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a>
         </ul>
     </nav>
     <section class="hero">
         <div class="hero-content">
             <h1>About Me</h1>
-            <p>Welcome to my creative space! I'm a Texas based designer with a background in art education. My experience as an art teacher and work with an early stage ed-tech startup, allows me to design solutions 
-            that improve engagement and accessibility for diverse users. </p>
-            <p>I love collaborating with cross-functional teams to turn insights into meaningful design solutions. I’m excited about opportunities where I can apply my research-driven approach to enhance user experiences.<p>
+            <p>Hey Y'all! I'm a Texas based designer with a background in art education. My experience as an art teacher and work with an early stage ed-tech startup, allows me to design solutions that improve engagement and accessibility for diverse users. </p>
             <p>When I am not designing, you can find me reading, making art, taking a yoga class, traveling or spending time with my husband and two kitties.</p>
         </div>
         <div class="hero-image"></div>
@@ -279,20 +285,25 @@
     <section class="experience-section">
         <div class="experience-container">
             <div class="card">
-                <h3>Professional Work</h3>
-                <h4>My Artistic Journey</h4>
-                <p>Explore a curated collection of my personal artwork, showcasing various techniques, styles, and creative explorations developed throughout my artistic career.</p>
+                <img src="img/about/colearn.jpeg" alt="CoLearn login screen showing a login form on the left with the CoLearn logo and fields for email and password, and an illustration on the right of a laptop with books, a notebook, a pen, and a clock, conveying a welcoming and organized online learning environment. The text CoLearn appears above the login form. The overall tone is friendly and professional.">
+                <h3>UX & Freelance Experience</h3>
+               <p>At CoLearn Academy, a virtual charter school startup with 300 students, I streamlined UX-focused processes in a fast-paced, lean environment. (Some project details available upon request due to an NDA.)<p>
+                <p>Other highlights include increasing engagement by 40% for Electric Avenue Bikes, designing interactive learning experiences for Compudopt, and improving accessibility and sales for Eva Konopka Art through a website redesign. 
+                    Email me to learn more and collaborate on new project adventures.</p>
                 <div class="button-group">
-                    <a href="#" class="btn">View My Artwork</a>
+                    <a href="mailto:saramckeecre8tive@gmail.com" class="btn">Email Me</a>
                 </div>
             </div>
 
             <div class="card">
-                <h3>Teaching Experience</h3>
-                <h4>Student Accomplishments</h4>
-                <p>Discover the incredible work created by my students. Their artwork represents the growth, creativity, and passion that emerges from our collaborative learning environment.</p>
+                <img src="img/art/art1.jpeg" alt="Abstract portrait painting featuring expressive brushstrokes in dark and vibrant colors, with facial features emerging from a textured background of yellow, green, and purple. The environment is energetic and layered, conveying an introspective and intense emotional tone. No visible text appears in the artwork.">
+                <h3>Art & Instruction Experience</h3>
+                <p>At Fort Bend ISD, I led 200+ art projects and authored district-wide curriculum, guiding students in creating their own work. At Compudopt, I developed UX/UI lessons, 
+                    shaping my UX approach for intuitive, inclusive digital experiences.</p>
+                <p>I continue to create art and explore visual storytelling on a daily basis.This fuels my creativity and stregnthens my visual experience skills.
+                    Click the link below to see my personal artwork and artwork from my past students.</p>
                 <div class="button-group">
-                    <a href="#" class="btn">View Student Artwork</a>
+                    <a href="#" class="btn">View Artwork</a>
                 </div>
             </div>
         </div>

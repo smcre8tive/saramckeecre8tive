@@ -18,17 +18,6 @@
         body {
             font-family: 'Lexend', sans-serif;
             font-weight: 300;
-            background: 
-                radial-gradient(ellipse at 15% 25%, rgba(255, 255, 255, 0.95) 0%, transparent 40%),
-                radial-gradient(ellipse at 85% 15%, rgba(207, 159, 135, 0.25) 0%, transparent 45%),
-                radial-gradient(ellipse at 45% 65%, rgba(255, 255, 255, 0.85) 0%, transparent 50%),
-                radial-gradient(ellipse at 75% 75%, rgba(207, 159, 135, 0.2) 0%, transparent 55%),
-                radial-gradient(ellipse at 5% 85%, rgba(255, 255, 255, 0.75) 0%, transparent 45%),
-                radial-gradient(ellipse at 60% 40%, rgba(245, 230, 220, 0.6) 0%, transparent 60%),
-                radial-gradient(ellipse at 25% 55%, rgba(207, 159, 135, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 90% 50%, rgba(255, 255, 255, 0.8) 0%, transparent 55%),
-                radial-gradient(ellipse at 35% 10%, rgba(236, 223, 213, 0.5) 0%, transparent 50%),
-                linear-gradient(180deg, #faf8f6 0%, #f5e6dc 40%, #ecdfd5 70%, #e4d4c8 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -121,6 +110,7 @@
             color: #4a4a4a;
             font-weight: 300;
             font-family: 'Lexend', sans-serif;
+            margin-bottom: 20px;
         }
 
         .hero-subtitle strong {
@@ -275,6 +265,9 @@
         }
 
         .card-button {
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
             background: #CF9F87;
             color: white;
             border: none;
@@ -412,6 +405,11 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hero {
+                padding: 20px 20px;
+                justify-items: center; /* Centers items horizontally */
+                text-align: center; /* Centers text */
+            }
             .carousel-container {
                 height: 700px;
             }
@@ -481,8 +479,6 @@
         <section id="home" class="hero-section">
             <h1 class="hero-title">Hi, I'm Sara McKee</h1>
             <p class="hero-subtitle">I design creative, interactive <strong>digital product</strong> experiences that are human-centered and research based.</p>
-        </section>
-
         <!-- Projects Section -->
         <div id="projects" class="carousel-container" id="carouselContainer">
         
@@ -521,36 +517,40 @@
         // Project data
         const projects = [
             {
-                title: "IncluDesign",
+                title: "IncluDesign Immersive Projector Game",
                 category: "Interaction Design",
-                description: "Multi-product ecosystem for design students builds empathy through a visual-imparment simulaiton immersive projector game.",
-                image: source="img/includesign/hero.png" 
+                description: "Multi-product inclusive design learning ecosystem and immersive projector game for design students.",
+                image: "img/includesign/hero.jpeg"
             },
+                 
             {
-                title: "Social Media Dashboard",
-                description: "Comprehensive analytics platform for managing multiple social media accounts with real-time insights.",
-                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop"
+                title: "Procrastigreat Planning App",
+                category: "UI Design",
+                description: "Neurodiverse Gen-Z Students Can Procrastinate Powerfully with these calming interface designs.",
+                image: "img/procrastigreat/Mock2.jpeg",
             },
+
             {
-                title: "E-Commerce Platform",
-                description: "Full-stack online shopping solution with payment integration and inventory management system.",
-                image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=250&fit=crop"
+                title: "How We Feel App for Apple Watch",
+                category: "Interaction Design",
+                description: "The How We Feel Feelings Tracker Mobile App Gets A Smart Watch Translation.",
+                image: "img/hwf/hero.jpeg"
             },
+
             {
-                title: "Weather Forecast App",
-                description: "Beautiful weather application with detailed forecasts, interactive maps, and severe weather alerts.",
-                image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=400&h=250&fit=crop"
+                title: "SoloDareity Responsive Web-App",
+                category: "UX/UI Design",
+                description: "Responsive, location based reviews and safety maps for solo female travelers by solo female travelers.",
+                image: "img/solodareity/mock2.jpeg"
             },
+
             {
-                title: "Task Management Tool",
-                description: "Collaborative productivity app with team features, deadlines, and project tracking capabilities.",
-                image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=400&h=250&fit=crop"
+                title: "Eva Konopka Art Sales Website Redesign",
+                category: "UX Client Work",
+                description: "Redesigning an artist's website to enhance user experience and boost art sales.",
+                image: "img/evakonopka/hero.jpeg"
             },
-            {
-                title: "Portfolio Website",
-                description: "Modern, responsive portfolio showcasing creative work with smooth animations and interactive elements.",
-                image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=250&fit=crop"
-            }
+          
         ];
 
         // Initialize carousel
@@ -574,7 +574,7 @@
                     <div class="card-image" style="background-image: url('${project.image}');"></div>
                     <div class="card-body">
                         <h6 class="project-category">${project.category}</h6>
-                        <h4 class="card-title"> <strong>${project.title}</h4>
+                        <h4 class="card-title"><strong>${project.title}</strong></h4>
                         <p class="card-description">${project.description}</p>
                         <button class="card-button">View Project</button>
                     </div>
@@ -633,7 +633,7 @@
                 if (!isHovering) {
                     nextSlide();
                 }
-            }, 4000);
+            }, 40000);
         }
 
         function stopAutoRotate() {
