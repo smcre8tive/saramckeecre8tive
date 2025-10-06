@@ -7,6 +7,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
    <style>
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            font-weight: 300;
+            line-height: 1.8;
+            color: #4a4a4a;
+            background-color: #fafafa;
+        }
+
             /* Navigation Bar */
         nav {
             position: fixed;
@@ -59,24 +73,11 @@
             color: #CF9F87;
             outline: none;
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Lexend', sans-serif;
-            font-weight: 300;
-            line-height: 1.8;
-            color: #4a4a4a;
-            background-color: #fafafa;
-        }
-
+    
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 150px 20px 60px !important;
         }
 
         h1 {
@@ -85,6 +86,7 @@
             font-size: 3.5rem;
             color: #4a4a4a;
             margin-bottom: 20px;
+            margin-top: 0px;
             letter-spacing: -1px;
         }
 
@@ -107,6 +109,15 @@
             font-size: 1rem;
             margin-bottom: 20px;
             color: #4a4a4a;
+        }
+        a {
+            color: #CF9F87;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #b8876f;
+            text-decoration: underline;
         }
 
         .image-container {
@@ -369,189 +380,181 @@
         </ul>
     </nav>
     <div class="container">
+
         <h1>IncluDesign Immersive Projector Game & Learning Ecosystem</h1>
         <p class="subtitle">Multi-product ecosystem for design students builds empathy through a visual-imparment simulaiton immersive projector game.</p>
         <p class="subtitle"><strong>Role: Product Designer | Team: 3 Designers | Duration: 3 weeks | Tools: Figma, Figjam, Canva</strong></p>
          <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x600/e8d5ca/CF9F87?text=Case+Study+Hero" alt="Case Study Hero ">
+                <img src="img/includesign/hero.jpeg" alt="Three people including one in a wheelchair and two standing are viewing a large projected screen on a wall. The screen displays a digital interface with a purple sidebar labeled IncluDesign Ecosystem Projector SCAD University and a main section showing a magnified pair of glasses and the text New Adventure ES Vision Adventure Experience Game Empathize through experiencing various vision impairment levels Learn to identify the impairment level and how to design for each Play button. The environment is a modern room with white walls and a calm, inclusive atmosphere. The emotional tone is thoughtful and focused on accessibility and empathy in design education.">
                 <div class="image-caption">Detail related to this project hero image</div>
-                <button class="button" style="margin-top: 15px;" onclick="openLightbox(this)">View Prototype</button>
             </div>
         <h2>Challenge & Problem</h2>
-        <p>During a SCAD graduate level class in 2024, I had the opportunity to design an immersive environment product with a cross-collaborative team. We decided to focus on accessible education design concerns for students.<p>
-        <p>Gen-Z design students value accessible design but lack engaging ways to learn how to apply it effectively. How might we help Gen-Z design students learn accessible design in engaging ways with immersive environment technology?</p>
+        <p>During a SCAD graduate level class in 2024, I had the opportunity to design an immersive environment product with a two other graduate team-mates. We decided to focus on accessible education design concerns for students.</p>
+        <p>Gen-Z design students value accessible design but lack engaging ways to learn how to apply it effectively.</p>
+        <blockquote style="font-size:1.1rem; font-style:italic; border-left:4px solid #CF9F87; margin: 20px 0; padding-left: 18px; color:#4a4a4a; background:#f5ede8;">
+            How might we help Gen-Z design students learn accessible design in engaging ways with immersive environment technology?
+        </blockquote>
+
         <div class="section" id="research">
+
             <h2>Research & Discovery</h2>
-            <p>The initial phase focused on understanding user pain points and identifying opportunities for improvement. We conducted user interviews with 25 participants, analyzed competitor applications, and examined existing usage analytics to establish a baseline understanding of current user behavior.</p>
+            <p>To help clarify user need, Inclusive Design definitions, expectations and market value, we used Figma & Figjam to gather supporting secondary research and market data to support our product direction.</p>
+            <p>After using <a href="https://inclusive.microsoft.design/" target="_blank">Microsoft's Inclusive Design</a> support kit for another project, I suggested we use it's definition and principles to support our process and my team-mates agreed. 
+                We also decided to use the Microsoft Persona Spectrum to help empathize with humans with diverse levels of impairment.</p>
+            <div class="image-container" onclick="openLightbox(this)">
+                <img src="img/includesign/microsoftinclusivedesignprin.jpeg" alt="Microsoft Inclusive Design Principles">
+                <div class="image-caption">Microsoft Inclusive Design's methodology is born out of digital environments, that enables and draws on the full range of human diversity. Most importantly, this means including and learning from people with a range of perspectives.</div>
+            </div>
+
+            <p>During our seondary research, we learned that:
+                    <blockquote style="font-size:1.1rem; font-style:italic; border-left:4px solid #CF9F87; margin: 20px 0; padding-left: 18px; color:#4a4a4a; background:#f5ede8;"></style> 90% of global corporations report being committed to diversity and inclusion efforts in 2024. Only 4% of these companies state having a disability inclusion focus.</blockquote>
+                    <blockquote style="font-size:1.1rem; font-style:italic; border-left:4px solid #CF9F87; margin: 20px 0; padding-left: 18px; color:#4a4a4a; background:#f5ede8;"></style> 62% of Gen-Z consumers have a strong values base and prefer to buy from brands that care about 
+                    important social issues, including inclusion & diversity.</blockquote>
+            </p>
+
+            </p>We also conducted conducted primary research with a SCAD design students using a Google survey and interviewed a graduate school inclusion design director to gather some important pain-points & insights that guided our next steps.</p>
             
             <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x600/e8d5ca/CF9F87?text=User+Research+Findings" alt="User Research Findings">
-                <div class="image-caption">Key insights from user interviews and competitive analysis highlighting main pain points</div>
+                <img src="img/includesign/surveypp.jpeg" alt="Pie chart titled Pain Points showing four main barriers to inclusive design for students. The largest segment is Design knowledge of inclusive design at 44.4 percent, followed by Empathy with marginalized users and Technology used for inclusive design each at 22.2 percent, and Limited access to marginalized users at 11.1 percent. The chart uses soft pastel colors on a dark background, conveying a serious and reflective tone about challenges in inclusive design education.">
+                <div class="image-caption">44% of design students rated their inclusive and accessibility design knowledge at a 2/5 emphasizing a gap in practical application.</div>
             </div>
 
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x650/d4b5a6/CF9F87?text=Interview+Sessions" alt="User Interview Sessions">
-                <div class="image-caption">Moderated interview sessions with participants discussing their banking app experiences</div>
-            </div>
+            <p>Walker, SCAD’s Inclusion Director, highlighted a global challenge: measuring inclusion and belonging. She highlighted that the national reading level standards that are grade 7 and content should reflect this. 
+                She also emphasized the importance of making experiences accessible & involving underrepresented communities in the design process, saying:
 
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x550/e0c9ba/CF9F87?text=Analytics+Dashboard" alt="Analytics Dashboard">
-                <div class="image-caption">Usage analytics showing drop-off points and feature engagement metrics</div>
-            </div>
+                <blockquote style="font-size:1.1rem; font-style:italic; border-left:4px solid #CF9F87; margin: 20px 0; padding-left: 18px; color:#4a4a4a; background:#f5ede8;"></style> “When I think of inclusion, I think of family. How do we ensure every family member is involved in the process of fulfilling or engaging in an action in the most purposeful way to achieve our goal?”
+                    <br> 
+                    <small>-Director Walker</small> 
+                </blockquote>
+            
+            </p>
 
-            <p>Our research revealed that users struggled most with complex navigation structures and lacked visibility into their spending patterns. These insights became the foundation for our design strategy moving forward.</p>
+            <p><strong>Our research identified four key user needs:</strong>
+                <ul>
+                    <li><strong>Empathy-building</strong>: Students need immersive ways to understand accessibility challenges.</li>
+                    <li><strong>Practical application</strong>: There's a gap between theory and hands-on inclusive design.</li> 
+                    <li><strong>Accessible tools</strong>: Learners require easy-to-use resources to apply inclusive principles.</li>
+                    <li><strong>Measurable outcomes</strong>: Educators want ways to track progress in accessibility learning.</li>
+                </ul>
+            </p>
+
+            <p><strong>We decided on the following features goals:</strong>
+                <ul>
+                    <li><strong>Gamification & Empathy</strong>: Empathy and gamification as the drivers for each feature to ideally engage university students in learning.</li>
+                    <li><strong>Accessible Learning</strong>: Understand and apply accessibility standards and related tools to our design and workflow.</li> 
+                    <li><strong>Accessible tools</strong>: Learners require easy-to-use, and finacially accessible resources to apply inclusive principles.</li>
+                    <li><strong>Measurable outcomes</strong>: Learners want ways to track progress in accessibility learning with application of learning and reward.</li>
+                </ul>
+            </p>
         </div>
 
-        <div class="section" id="personas">
-            <h2>User Personas</h2>
-            <p>Based on our research findings, we developed three primary user personas representing our target audience segments. These personas helped the team maintain focus on real user needs throughout the design process.</p>
+        <div class="section" id="ideation">
+            <h2>Ideation & Iteration</h2>
+            <p>Low-fidelity sketches and wire-frames helped us ideate through multiple versions of our problem solution.</p>
             
             <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x700/e8d5ca/CF9F87?text=Primary+User+Personas" alt="User Personas">
-                <div class="image-caption">Three primary personas representing distinct user segments and their unique needs</div>
+                <img src="img/includesign/sketches.jpeg" alt="Initial Sketches">
+                <div class="image-caption">Our initial sketches included ideas for a responsive web-app learning game with AR envorinment scanner and an immersive projector game.</div>
             </div>
 
             <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x600/cfa596/8b6f5f?text=Persona+Journey+Maps" alt="Journey Maps">
-                <div class="image-caption">Journey maps for each persona showing touchpoints and emotional states</div>
+                <img src="img/includesign/ecosystem.jpeg" alt="Initial Sketches">
+                <div class="image-caption">Starting first with the web-app with AR scanner, we made a pivot to the interactive projector on a university campus when user feedback highlighed a need for more a immersive experience.
+                    We integrated the web-app into an inclusive design ecosystem where the app would act as a support tool. </div>
             </div>
 
             <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x650/ddc2b1/CF9F87?text=Empathy+Maps" alt="Empathy Maps">
-                <div class="image-caption">Empathy maps detailing what users think, feel, say, and do throughout their banking experience</div>
-            </div>
-        </div>
-
-        <div class="section" id="architecture">
-            <h2>Information Architecture</h2>
-            <p>We restructured the app's information architecture to create clearer pathways to key features. The new structure reduced navigation depth from five levels to three, making essential functions more accessible.</p>
-            
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x800/e8d5ca/CF9F87?text=Information+Architecture+Map" alt="Information Architecture">
-                <div class="image-caption">Revised information architecture showing simplified navigation hierarchy</div>
+                <img src="img/includesign/userflow.jpeg" alt="User Flows">
+                <div class="image-caption">We researched interactive projector experiences & games and decided on a game to support empathy for visual imparement. 
+                    This user-flow identifies the parts of our game and how the user would transition from one screen to the next.</div>
             </div>
 
             <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x650/c9ac9a/8b6f5f?text=Card+Sorting+Results" alt="Card Sorting">
-                <div class="image-caption">Card sorting exercise results revealing user mental models and content groupings</div>
-            </div>
-
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x700/e0c9ba/a88872?text=Site+Map+Comparison" alt="Site Map Comparison">
-                <div class="image-caption">Before and after site maps demonstrating simplified structure and reduced complexity</div>
-            </div>
-
-            <p>This streamlined architecture was validated through card sorting exercises with 15 users, ensuring the new structure aligned with user mental models.</p>
-        </div>
-
-        <div class="section" id="wireframes">
-            <h2>Wireframes & Iteration</h2>
-            <p>Low-fidelity wireframes allowed us to rapidly test different layout concepts and interaction patterns. We created over 40 wireframe variations and conducted guerrilla testing sessions to identify the most intuitive designs.</p>
-            
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x650/e8d5ca/CF9F87?text=Wireframe+Iterations" alt="Wireframe Iterations">
-                <div class="image-caption">Evolution of key screens from initial sketches through refined wireframes</div>
-            </div>
-
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x700/d4b5a6/8b6f5f?text=Low+Fidelity+Sketches" alt="Initial Sketches">
-                <div class="image-caption">Early concept sketches exploring different approaches to the dashboard layout</div>
-            </div>
-
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x600/c9ac9a/CF9F87?text=User+Flow+Diagrams" alt="User Flows">
-                <div class="image-caption">Detailed user flows mapping the complete journey for primary tasks</div>
-            </div>
-
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x680/e0c9ba/a88872?text=Annotation+Notes" alt="Annotated Wireframes">
-                <div class="image-caption">Annotated wireframes with interaction notes and responsive behavior specifications</div>
+                <img src="img/includesign/midfi.jpeg" alt="Six grayscale mid-fidelity wireframe screens for an interactive projector game are arranged in two rows. The screens show a sidebar menu with leaderboard and login, a welcome screen with dials and a spin button, a quiz screen asking Which kind of visual impairment is this with answer options and a timer, an instructional screen about assisting individuals with macular disease, a mobile interface for accessibility controls, and a final congratulatory screen with a Back to homepage button. The environment is clean and modern, with a focus on accessibility and learning. The emotional tone is thoughtful and educational, emphasizing empathy and inclusion.">
+                <div class="image-caption">For our low-fidelity wire-frames, we used the Figma Apple Oculus' design system as a base for our projector simulation prototype.</div>
             </div>
         </div>
 
         <div class="section" id="visual-design">
             <h2>Visual Design</h2>
-            <p>The visual design phase brought the wireframes to life with a modern, accessible color palette and refined typography. We prioritized readability and ensured all color combinations met WCAG AA accessibility standards.</p>
+
+            <p>We each took on different tasks to help break up the high-fidelity design work. 
+            I focused on the first two parts of the game while my other team-mates took on the design system and the final game screens. 
+            Here are the design contributions that I made to the final product.</p>
+            
+              <div class="image-container" onclick="openLightbox(this)">
+                <img src="img/includesign/login.jpg" alt="Login Screens with web-app support">
+                <div class="image-caption">Inspired by other larger format screen interface designs, I created an intro screen with a login sequence for students. 
+                    I identified an opportunity for our team to use our web-app designs as a controler and accessibility support tool. 
+                    We added a hand holding a matching mobile screen to each prototype screen to help simulate the full ecosystem experience. 
+                </div>
+            </div>
             
             <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x750/e8d5ca/CF9F87?text=High+Fidelity+Mockups" alt="High Fidelity Designs">
-                <div class="image-caption">High-fidelity mockups showcasing the final visual design system and key screens</div>
+                <img src="img/includesign/spinner.jpg" alt="Seven projector game screens arranged in a grid, each showing a digital interface simulating different visual impairments such as glaucoma, color blindness, macular degeneration, blindness, and cataracts. Each screen features a blurred background of a person holding glasses, a central label with the impairment name, and a button labeled Spin or Start Game. A hand holding a mobile phone is visible on the right of each screen, suggesting mobile interaction. The environment is a modern, softly lit room with a focus on accessibility and empathy in design education. The emotional tone is thoughtful and educational, emphasizing understanding and inclusion. Text on the screens includes impairment names and buttons labeled Spin, Start Game, or Select.">
+                <div class="image-caption">To help increase engagement, I explored Figma's prototype animation features to help bring the experience to life with a simulation game spinner.</p></div>
             </div>
 
             <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x600/cfa596/8b6f5f?text=Design+System+Components" alt="Design System">
-                <div class="image-caption">Comprehensive component library including buttons, forms, cards, and navigation elements</div>
+                <img src="img/includesign/visualimparementsim.jpg" alt="Four large projector screens display an interactive quiz game simulating different visual impairments. Each screen shows a city skyline blurred to represent vision loss. The top of each screen asks Which visual impairment is this. Two answer buttons are labeled Color Blind and Macular Degeneration. A timer and user avatars appear on the right side. The final screen features a yellow background with a badge, a checkmark, the word Correct, and two buttons labeled Exit and Continue Learning. A hand holding a mobile phone is visible in each scene, indicating mobile interaction. The setting is a modern, softly lit room with white walls and columns. The emotional tone is educational, supportive, and focused on empathy and accessibility in design learning.">
+                <div class="image-caption">I used a visual from the <a href="https://sightcentertoledo.org/eyeconditions/vision-impairment-simulator/" target="_blank">Sight Center of Northwest Ohio</a> to help prototype a visual imparement simulation environemnt quiz. 
+                    Future goals could be centered on adding more immersive video with sound.
+                </div>
             </div>
 
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x550/d4b5a6/CF9F87?text=Color+Palette+Typography" alt="Style Guide">
-                <div class="image-caption">Brand colors, typography scale, and spacing system ensuring consistency across platforms</div>
-            </div>
-
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x700/e0c9ba/a88872?text=Responsive+Breakpoints" alt="Responsive Design">
-                <div class="image-caption">Responsive design adaptations across mobile, tablet, and desktop viewports</div>
-            </div>
-
-            <p>The design system included a comprehensive component library to ensure consistency across all touchpoints and facilitate future scalability.</p>
         </div>
 
         <div class="section" id="prototyping">
             <h2>Prototyping & Testing</h2>
-            <p>Interactive prototypes enabled us to test the complete user experience before development. We conducted moderated usability testing with 20 participants, measuring task completion rates and gathering qualitative feedback.</p>
+            <p>We worked together remotely to combine our designs into a high-fidelity interactive prototype in Figma to simulate the projector game experience. 
+                We used Canva to design and present our process & prototype with SCAD design students and faculty for feedback and usability.</p>
             
             <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x600/e8d5ca/CF9F87?text=Prototype+User+Flows" alt="Prototype Testing">
-                <div class="image-caption">Key user flows tested in the interactive prototype with success metrics</div>
+                <img src="img/includesign/render1.jpeg" alt="Three people, including one in a wheelchair and two standing, view a large projected screen on a wall. The screen displays a congratulatory message: Congratulations You just finished the group learning of ES Learning Adventure Level 2 and a large button labeled Back to homepage. The room is modern with white walls and columns, creating an inclusive and thoughtful atmosphere focused on accessibility and empathy in design education. The emotional tone is celebratory and supportive, emphasizing achievement and inclusion.">
+                <div class="image-caption">
+                    One of our team-members used Audocad to create a few architectural renderings of an environment with our projector game in use by students.
+                </div>
+            </div>
+                
+            <div class="image-container" onclick="openLightbox(this)">
+                <img src="img/includesign/presentation.jpg" alt="Nine presentation slides from the IncluDesign Interactive Projector case study are arranged in a grid. The slides feature dark backgrounds with white and gold text, diagrams, and interface mockups. Topics include project title, table of contents, interaction model, design system, immersive vision simulation game, future impact, and research. Some slides show people interacting with a projected screen in a modern classroom. Text on the slides includes IncluDesign, The Interactive Projector, Table of Contents, Design System, Immersive Vision Simulation Game Example, The Future Impact, and Research and Brainstorming. 
+                The environment is academic and collaborative, with a thoughtful and inclusive emotional tone focused on accessibility and design education.">
+                <div class="image-caption"> 
+                    These are some of the slides from our presentation and represent project work done by my team-mates.
+                </div>
             </div>
 
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x650/c9ac9a/8b6f5f?text=Usability+Testing+Session" alt="Testing Session">
-                <div class="image-caption">Participant completing tasks during moderated usability testing session</div>
-            </div>
-
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x700/ddc2b1/CF9F87?text=Heatmaps+Click+Data" alt="Interaction Heatmaps">
-                <div class="image-caption">Interaction heatmaps revealing user attention patterns and click behaviors</div>
-            </div>
-
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x580/e0c9ba/a88872?text=Testing+Findings" alt="Test Results">
-                <div class="image-caption">Summary of usability testing findings with task completion rates and pain points</div>
-            </div>
+            <p>Class feedback highlighted the engaging nature of the game but also pointed out areas for improvement, such as clarification on the ecosystem and more diverse scenarios for simulaitons.
+                We ideated future goals for edits to this after this feeedback session including:
+                <ul>
+                    <li>Adding more immersive video and sound to enhance the simulation experience.</li>
+                    <li>Incorporating a wider range of visual impairments and scenarios to broaden empathy-building.</li>
+                    <li>Testing the prototype with diverse human users that vary on the accessibility needs spectrum.</li>
+                    <li>Finding an interactive projector to use for real-world game design testing.</li>
+                </ul>
         </div>
-
+        
         <div class="section" id="results">
             <h2>Results & Impact</h2>
-            <p>Following the launch of the redesigned application, we measured significant improvements across key metrics. Task completion time decreased by 35%, and user satisfaction scores increased from 3.2 to 4.5 out of 5.</p>
-            
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x550/e8d5ca/CF9F87?text=Success+Metrics+Dashboard" alt="Results Dashboard">
-                <div class="image-caption">Key performance indicators showing improvements in user engagement and satisfaction</div>
-            </div>
+            <p>This project was completed in a 3-week academic quarter and was well-received by both peers and faculty. 
+                The interactive projector game concept demonstrated a novel approach to teaching inclusive design principles through immersive technology.</p>
+            <p>Key outcomes included:
+                <ul>
+                    <li><strong>Empathy through Experience</strong>: The immersive nature of the projector game effectively fostered empathy among design students.</li>
+                    <li><strong>Engagement in Learning</strong>: Gamification elements increased student engagement and motivation to learn about accessibility.</li>
+                    <li><strong>Future Potential</strong>: The project highlighted the potential for immersive technologies in design education, suggesting avenues for further exploration and development.</li>
+                </ul>
+            </p>
+            <p>Overall, the IncluDesign Interactive Projector game represents a promising step towards more inclusive and engaging design education, aligning with the values and needs of Gen-Z design students in 2024. 
+            I learned so much working remotely with this team related to team-work, inclusive design, interactive projectors, interactive affordances and signifiers and creative prototype animation simulation.</p>
 
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x600/cfa596/8b6f5f?text=Before+After+Comparison" alt="Before After">
-                <div class="image-caption">Side-by-side comparison of the old and new interfaces highlighting key improvements</div>
-            </div>
-
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x650/d4b5a6/CF9F87?text=User+Feedback+Quotes" alt="User Testimonials">
-                <div class="image-caption">Selected user feedback and testimonials from post-launch surveys</div>
-            </div>
-
-            <div class="image-container" onclick="openLightbox(this)">
-                <img src="https://placehold.co/1000x700/e0c9ba/a88872?text=Analytics+Growth+Charts" alt="Growth Metrics">
-                <div class="image-caption">Month-over-month analytics showing sustained improvement in engagement and adoption</div>
-            </div>
-
-            <p>The redesign also led to a 28% increase in feature adoption and a 40% reduction in support tickets related to navigation confusion. These results validated our user-centered design approach and provided valuable insights for future iterations.</p>
-            <div class="case-study-nav">
+        </div>
+             <div class="case-study-nav">
                 <div class="nav-container">
                     <div class="next-case">
                     <p class="nav-label">Next Project</p>
                     <a href="#next-project" class="next-link">
-                        <span>Brand Identity for Artisan Bakery</span>
+                        <span>Procrastigreat Planning App</span>
                         <svg class="arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
@@ -566,6 +569,7 @@
             </a>
         </div>
     </div>
+
     <style>
         .case-study-nav {
         max-width: 1200px;
@@ -695,9 +699,7 @@
     <nav class="floating-menu" id="floatingMenu">
         <div class="menu-title">Jump to Section</div>
         <a href="#research" class="menu-item">Research & Discovery</a>
-        <a href="#personas" class="menu-item">User Personas</a>
-        <a href="#architecture" class="menu-item">Information Architecture</a>
-        <a href="#wireframes" class="menu-item">Wireframes & Iteration</a>
+        <a href="#ideation" class="menu-item">Ideation & Iteration</a>
         <a href="#visual-design" class="menu-item">Visual Design</a>
         <a href="#prototyping" class="menu-item">Prototyping & Testing</a>
         <a href="#results" class="menu-item">Results & Impact</a>
