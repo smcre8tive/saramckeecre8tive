@@ -156,14 +156,7 @@
         }
 
         /* Project Card Styling */
-        .carousel-stage {
-            pointer-events: none;
-        }
 
-        .project-card {
-            pointer-events: auto;
-        }
-        
         .project-card {
             position: absolute;
             width: 320px;
@@ -181,6 +174,11 @@
             overflow: hidden;
             backface-visibility: visible;
             border: 1px solid rgba(207, 159, 135, 0.25);
+            pointer-events: none;
+        }
+
+        .project-card.front-card {
+            pointer-events: auto;
         }
 
         .project-card::before {
@@ -548,7 +546,7 @@
                 category: "UX Design Client Project",
                 description: "Redesigning an artist's website to enhance user experience and boost art sales.",
                 image: "img/evakonopka/hero.jpeg",
-                link:"evakonopkaart.html"
+                link: "evakonopkaart.html"
             },
 
             {
