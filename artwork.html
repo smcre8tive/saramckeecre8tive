@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Art Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@300;400;600;700&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray-mid: #999999;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.25rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(207, 159, 135, 0.1);
+        }
+    
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #2a2a2a;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #CF9F87;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after,
+        nav a:focus::after {
+            width: 100%;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #CF9F87;
+            outline: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 5% 4rem;
+        }
+
+        h1 {
+            font-family: 'Lora', serif;
+            font-size: 4rem;
+            font-weight: 300;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-family: 'Lexend', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--gray-mid);
+            max-width: 700px;
+        }
+
+        /* Category Section */
+        .category-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 5%;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 4rem;
+            min-height: 70vh;
+        }
+
+        .category-list {
+            border-right: 1px solid var(--black);
+            padding-right: 3rem;
+        }
+
+        .category-item {
+            font-family: 'Lora', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            padding: 1.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--gray-light);
+            position: relative;
+        }
+
+        .category-item.active {
+            font-weight: 400;
+        }
+
+        .category-item:hover {
+            padding-left: 1rem;
+        }
+
+        .category-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--black);
+            transition: width 0.3s ease;
+        }
+
+        .category-item:hover::before {
+            width: 40px;
+            left: -50px;
+        }
+
+        .category-count {
+            font-family: 'Lexend', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--gray-mid);
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        .cards-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            perspective: 1000px;
+            min-height: 500px;
+        }
+
+        .cards-placeholder {
+            font-family: 'Lora', serif;
+            font-weight: 300;
+            color: var(--gray-mid);
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .card-deck {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            display: none;
+        }
+
+        .card-deck.active {
+            display: block;
+        }
+
+        .playing-card {
+            position: absolute;
+            width: 280px;
+            height: 400px;
+            background: var(--white);
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            left: 50%;
+            top: 50%;
+            transform-origin: center center;
+            overflow: hidden;
+        }
+
+        .playing-card:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            z-index: 100 !important;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .card-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-top: 1px solid #e0e0e0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .playing-card:hover .card-info {
+            opacity: 1;
+        }
+
+        .card-title {
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 1200px;
+            background: var(--white);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-image {
+            width: 100%;
+            display: block;
+        }
+
+        .modal-info {
+            padding: 2rem;
+            border-top: 1px solid var(--black);
+        }
+
+        .modal-title {
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-category {
+            font-family: 'Lexend', sans-serif;
+            color: var(--gray-mid);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-description {
+            font-family: 'Lexend', sans-serif;
+            color: var(--black);
+            line-height: 1.8;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .close-modal:hover {
+            background: var(--white);
+            color: var(--black);
+            transform: rotate(90deg);
+        }
+
+        /* CV Section */
+        .cv-section {
+            max-width: 1400px;
+            margin: 5rem auto 0;
+            padding: 5rem 5%;
+            border-top: 1px solid var(--black);
+        }
+
+        .cv-title {
+            font-family: 'Lora', serif;
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+        }
+
+        .cv-category {
+            margin-bottom: 3rem;
+        }
+
+        .cv-category-title {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--black);
+        }
+
+        .cv-entry {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .cv-entry::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+            width: 8px;
+            height: 8px;
+            background: var(--black);
+            border-radius: 50%;
+        }
+
+        .cv-year {
+            font-family: 'Lexend', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .cv-title-text {
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        .cv-location {
+            font-family: 'Lexend', sans-serif;
+            font-size: 0.95rem;
+            color: var(--gray-mid);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .category-section {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .category-list {
+                border-right: none;
+                border-bottom: 1px solid var(--black);
+                padding-right: 0;
+                padding-bottom: 2rem;
+            }
+
+            .category-item {
+                font-size: 2rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .playing-card {
+                width: 220px;
+                height: 320px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .category-item {
+                font-size: 1.5rem;
+            }
+
+            .cv-title {
+                font-size: 2rem;
+            }
+
+            .playing-card {
+                width: 180px;
+                height: 260px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+             <li><a href="artwork.html">Artworks</a></li>
+            <li><a href="https://drive.google.com/file/d/1sS4twDhUD-qvhKPzjv6B8NfV_LuKf29L/view?usp=drive_link">Resume</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Visual Art</h1>
+        <p class="subtitle">A collection of paintings, illustrations, and mixed media explorations that capture moments, emotions, and creative experiments.</p>
+    </section>
+
+    <section class="category-section">
+        <div class="category-list" id="categoryList">
+            <!-- Categories will be generated by JavaScript -->
+        </div>
+        <div class="cards-container" id="cardsContainer">
+            <p class="cards-placeholder">Hover over a category to view works</p>
+        </div>
+    </section>
+
+    <section class="cv-section">
+        <h2 class="cv-title">Exhibition History</h2>
+        
+        <div class="cv-category">
+            <h3 class="cv-category-title">Solo Exhibitions</h3>
+            <div class="cv-entry">
+                <div class="cv-year">2024</div>
+                <div class="cv-title-text">Liminal Spaces</div>
+                <div class="cv-location">Gallery Modern, New York, NY</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-year">2023</div>
+                <div class="cv-title-text">Between the Lines</div>
+                <div class="cv-location">Contemporary Art Center, Chicago, IL</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-year">2022</div>
+                <div class="cv-title-text">Reflections in Color</div>
+                <div class="cv-location">Studio Gallery, San Francisco, CA</div>
+            </div>
+        </div>
+
+        <div class="cv-category">
+            <h3 class="cv-category-title">Group Exhibitions</h3>
+            <div class="cv-entry">
+                <div class="cv-year">2024</div>
+                <div class="cv-title-text">Emerging Voices in Contemporary Art</div>
+                <div class="cv-location">The Art Institute, Boston, MA</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-year">2023</div>
+                <div class="cv-title-text">Mixed Media: New Directions</div>
+                <div class="cv-location">National Gallery of Art, Washington, DC</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-year">2023</div>
+                <div class="cv-title-text">Color and Form</div>
+                <div class="cv-location">Contemporary Space, Los Angeles, CA</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-year">2022</div>
+                <div class="cv-title-text">Annual Juried Exhibition</div>
+                <div class="cv-location">Museum of Modern Art, Portland, OR</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-year">2021</div>
+                <div class="cv-title-text">Regional Artists Showcase</div>
+                <div class="cv-location">City Gallery, Seattle, WA</div>
+            </div>
+        </div>
+
+        <div class="cv-category">
+            <h3 class="cv-category-title">Awards & Residencies</h3>
+            <div class="cv-entry">
+                <div class="cv-year">2024</div>
+                <div class="cv-title-text">Artist Residency Program</div>
+                <div class="cv-location">Vermont Studio Center, Johnson, VT</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-year">2023</div>
+                <div class="cv-title-text">Emerging Artist Grant</div>
+                <div class="cv-location">National Endowment for the Arts</div>
+            </div>
+            <div class="cv-entry">
+                <div class="cv-year">2022</div>
+                <div class="cv-title-text">Best in Show</div>
+                <div class="cv-location">Annual Regional Exhibition, Denver Art Museum</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <img src="" alt="" class="modal-image" id="modalImage">
+            <div class="modal-info">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-category" id="modalCategory"></p>
+                <p class="modal-description" id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const artworks = [
+            {
+                id: 1,
+                title: "Sunset Dreams",
+                category: "Painting",
+                image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800",
+                description: "An abstract exploration of warm colors and movement, capturing the fleeting moment when day transitions to night."
+            },
+            {
+                id: 2,
+                title: "Urban Sketches",
+                category: "Illustration",
+                image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800",
+                description: "Line drawings documenting the architectural character of city streets and the stories they tell."
+            },
+            {
+                id: 3,
+                title: "Textured Memories",
+                category: "Mixed Media",
+                image: "https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=800",
+                description: "Combining collage, paint, and found materials to create layered narratives about place and memory."
+            },
+            {
+                id: 4,
+                title: "Digital Landscapes",
+                category: "Digital Art",
+                image: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=800",
+                description: "Imaginary worlds built through digital painting, exploring color harmony and atmospheric perspective."
+            },
+            {
+                id: 5,
+                title: "Portrait Study",
+                category: "Painting",
+                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800",
+                description: "Oil painting focusing on capturing emotion and personality through gesture and color."
+            },
+            {
+                id: 6,
+                title: "Botanical Series",
+                category: "Illustration",
+                image: "https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=800",
+                description: "Detailed pen and ink illustrations celebrating the delicate beauty of plant forms."
+            },
+            {
+                id: 7,
+                title: "Abstract Composition",
+                category: "Painting",
+                image: "https://images.unsplash.com/photo-1549887534-1541e9326642?w=800",
+                description: "Playing with shape, color, and texture to create a dynamic visual rhythm."
+            },
+            {
+                id: 8,
+                title: "Mixed Textures",
+                category: "Mixed Media",
+                image: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=800",
+                description: "Experimental piece combining acrylic paint with fabric and paper elements."
+            },
+            {
+                id: 9,
+                title: "Character Design",
+                category: "Digital Art",
+                image: "https://images.unsplash.com/photo-1583043986486-f52772df26f1?w=800",
+                description: "Concept art exploring personality through stylized character illustrations."
+            },
+            {
+                id: 10,
+                title: "Watercolor Study",
+                category: "Painting",
+                image: "https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=800",
+                description: "Exploring transparency and flow in watercolor techniques."
+            },
+            {
+                id: 11,
+                title: "Ink Drawings",
+                category: "Illustration",
+                image: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=800",
+                description: "Expressive line work capturing gesture and movement."
+            },
+            {
+                id: 12,
+                title: "Collage Experiment",
+                category: "Mixed Media",
+                image: "https://images.unsplash.com/photo-1578301978018-3005759f48f7?w=800",
+                description: "Layered paper and found materials creating unexpected compositions."
+            }
+        ];
+
+        const categoryList = document.getElementById('categoryList');
+        const cardsContainer = document.getElementById('cardsContainer');
+        const modal = document.getElementById('modal');
+        const closeModalBtn = document.getElementById('closeModal');
+
+        // Get unique categories and count
+        const categories = {};
+        artworks.forEach(art => {
+            if (!categories[art.category]) {
+                categories[art.category] = { count: 0, works: [] };
+            }
+            categories[art.category].count++;
+            categories[art.category].works.push(art);
+        });
+
+        // Render categories
+        Object.keys(categories).forEach(cat => {
+            const item = document.createElement('div');
+            item.className = 'category-item';
+            item.dataset.category = cat;
+            item.innerHTML = `
+                ${cat}
+                <span class="category-count">${categories[cat].count} works</span>
+            `;
+            
+            item.addEventListener('mouseenter', () => {
+                document.querySelectorAll('.category-item').forEach(c => c.classList.remove('active'));
+                item.classList.add('active');
+                showCards(cat);
+            });
+            
+            categoryList.appendChild(item);
+        });
+
+        // Show playing cards for category
+        function showCards(category) {
+            const placeholder = cardsContainer.querySelector('.cards-placeholder');
+            if (placeholder) placeholder.style.display = 'none';
+            
+            // Remove existing decks
+            const existingDecks = cardsContainer.querySelectorAll('.card-deck');
+            existingDecks.forEach(deck => deck.classList.remove('active'));
+            
+            // Check if deck exists
+            let deck = cardsContainer.querySelector(`[data-deck="${category}"]`);
+            
+            if (!deck) {
+                // Create new deck
+                deck = document.createElement('div');
+                deck.className = 'card-deck';
+                deck.dataset.deck = category;
+                
+                const works = categories[category].works;
+                const totalCards = works.length;
+                const containerWidth = cardsContainer.offsetWidth;
+                const containerHeight = 500;
+                
+                works.forEach((work, i) => {
+                    const card = document.createElement('div');
+                    card.className = 'playing-card';
+                    card.dataset.id = work.id;
+                    
+                    // Calculate fan layout
+                    const angle = (i - (totalCards - 1) / 2) * 8; // degrees
+                    const spreadX = (i - (totalCards - 1) / 2) * 50; // horizontal spread
+                    const spreadY = Math.abs(i - (totalCards - 1) / 2) * 15; // slight curve
+                    
+                    card.style.transform = `translate(-50%, -50%) translateX(${spreadX}px) translateY(${spreadY}px) rotate(${angle}deg)`;
+                    card.style.zIndex = i;
+                    
+                    card.innerHTML = `
+                        <img src="${work.image}" alt="${work.title}" class="card-image">
+                        <div class="card-info">
+                            <div class="card-title">${work.title}</div>
+                        </div>
+                    `;
+                    
+                    card.addEventListener('click', () => openModal(work.id));
+                    
+                    deck.appendChild(card);
+                });
+                
+                cardsContainer.appendChild(deck);
+            }
+            
+            deck.classList.add('active');
+        }
+
+        // Open modal
+        function openModal(id) {
+            const artwork = artworks.find(art => art.id == id);
+            document.getElementById('modalImage').src = artwork.image;
+            document.getElementById('modalTitle').textContent = artwork.title;
+            document.getElementById('modalCategory').textContent = artwork.category;
+            document.getElementById('modalDescription').textContent = artwork.description;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    </script>
+</body>
+</html>
