@@ -31,7 +31,7 @@
 
         h6 {
             font-family: 'Lexend', sans-serif;
-            color: #CF9F87;
+            color: #2a2a2a;
             font-weight: 500;
             text-transform: uppercase;
         }
@@ -103,6 +103,11 @@
             color: #4a4a4a;
             font-family: 'Lora', serif;
         }
+        
+        .hero-title strong {
+            color: #2a2a2a;
+            font-weight: 600;
+        }
 
         .hero-subtitle {
             font-size: clamp(1.1rem, 2.5vw, 1.4rem);
@@ -111,11 +116,6 @@
             font-weight: 300;
             font-family: 'Lexend', sans-serif;
             margin-bottom: 40px;
-        }
-
-        .hero-subtitle strong {
-            color: #CF9F87;
-            font-weight: 600;
         }
 
         .carousel-container {
@@ -215,7 +215,7 @@
 
         .card-image {
             width: 100%;
-            height: 200px;
+            height: 400px;
             background: #e0e0e0;
             display: flex;
             align-items: center;
@@ -277,7 +277,7 @@
             position: relative;
             z-index: 10;
             pointer-events: auto;
-            background: #CF9F87;
+            background: #2a2a2a;
             color: white;
             border: none;
             padding: 12px 28px;
@@ -293,7 +293,7 @@
         }
 
         .card-button:hover {
-            background: #b88770;
+            background: #CF9F87;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(207, 159, 135, 0.4);
         }
@@ -364,13 +364,13 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: rgba(207, 159, 135, 0.3);
+            background: #4a4a4a;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .indicator.active {
-            background: #CF9F87;
+            background: #2a2a2a;
             width: 30px;
             border-radius: 5px;
         }
@@ -393,7 +393,7 @@
         }
 
         .social-links a {
-            color: #CF9F87;
+            color: #2a2a2a;
             text-decoration: none;
             font-size: 2rem;
             transition: all 0.3s ease;
@@ -407,7 +407,7 @@
         }
 
         .social-links a:hover {
-            color: #b88770;
+            color: #CF9F87;
             background: rgba(207, 159, 135, 0.2);
             transform: translateY(-3px);
         }
@@ -487,8 +487,7 @@
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero-section">
-            <h1 class="hero-title">Hi, I'm Sara McKee</h1>
-            <p class="hero-subtitle">I'm an artist and designer with a background in education. I design creative, interactive, <strong>digital product</strong> experiences that are human-centered and research-based.</p>
+            <h1 class="hero-title">Hi. I'm <strong>Sara McKee</strong>, Digital Designer.</h1>
         <!-- Projects Section -->
         <div id="projects" class="carousel-container" id="carouselContainer">
         
