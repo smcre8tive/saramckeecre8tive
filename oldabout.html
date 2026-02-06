@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            font-weight: 300;
+            background: #fdfdfd;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            color: #0f1014;
+        }
+         /* Main Heading */
+        h1{
+            font-family: 'Lora', serif;
+            font-size: 3.857rem;
+            font-weight: 600;
+            color: #0f1014;
+            margin-bottom: 20px;
+        }
+        
+        /* Project Title */
+        h2 {
+            font-family: 'Lora', serif;
+            font-size: 2.929rem;
+            font-weight: 500;
+            color: #0f1014;
+        }
+        
+        /* Subheading/Section Title */
+        h3 {
+            font-family: 'Lexend', sans-serif;
+            font-size: 2.214rem;
+            font-weight: 300;
+            color: #0f1014;
+            text-transform: uppercase;
+        }
+        
+        /* Quotes/Secondary Headings */
+        h4{
+            font-family: 'Lora', serif;
+            font-size: 1.714rem;
+            font-weight: 400;
+            color: #0f1014;
+            font-style: italic;
+        }
+        
+        /* Menu Items/Minor Headings */
+        h5{
+            font-family: 'Lora', serif;
+            font-size: 1.714rem;
+            font-weight: 500;
+            color: #0f1014;
+        }
+        
+        /*Buttons*/
+        h6 {
+            font-family: 'Lexend', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #0f1014;
+            text-transform: uppercase;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #fdfdfd;
+            backdrop-filter: blur(10px);
+            padding: 1.25rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(207, 159, 135, 0.1);
+        }
+    
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #0f1014;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #857028;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after,
+        nav a:focus::after {
+            width: 100%;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #857028;
+            outline: none;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 150px 20px 60px !important;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            display: grid;
+            grid-template-areas: "text image";
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content p {
+            grid-area: text;
+            font-size: 1rem;
+            color: #0f1014;
+            line-height: 1.8;
+        }
+
+        .hero-image {
+            margin-top: 50px;
+            grid-area: image;
+            border-radius: 50%;
+            width: 300px;
+            height: 300px;
+            max-width: 90vw;
+            aspect-ratio: 1 / 1;
+            background-image: url("img/about/headshot.jpeg");
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            justify-self: center;
+        }
+
+        .experience-section {
+            background-color: #fdfdfd;
+            padding: 80px 40px;
+        }
+
+        .experience-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: #fdfdfd;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(207, 159, 135, 0.3);
+        }
+
+        .card h3 {
+            font-family: 'Lora', serif;
+            font-weight: 300;
+            font-size: 2rem;
+            color: #0f1014;
+            margin-bottom: 15px;
+        }
+
+        .card h4 {
+            font-family: 'Lexend', sans-serif;
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: #0f1014;
+            margin-bottom: 20px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #0f1014;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;           /* Fixed height for uniformity */
+            object-fit: cover;       /* Crops to fill the space */
+            display: block;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #857028;
+            color: #fdfdfd;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: 'Lexend', sans-serif;
+            font-weight: 300;
+            font-size: 0.95rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #857028;
+            transform: scale(1.05);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+     /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 2rem;
+            }
+    
+    
+            nav ul {
+                 position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 80px 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+    
+            nav ul.active {
+                right: 0;
+            }
+    
+            nav li {
+                width: 100%;
+            }
+    
+            nav a {
+                font-size: 1.2rem;
+                display: block;
+                width: 100%;
+                padding: 0.5rem 0;
+            }
+    
+            nav a::after {
+                bottom: 0;
+            }
+    
+    
+            .hero-section {
+                padding: 6rem 2rem 2rem;
+            }
+    
+            .hero-title {
+                margin-bottom: 1rem;
+            }
+          
+            .carousel-container {
+                height: 540px;  /* Increased */
+                padding: 30px 10px 30px;  /* Added bottom padding */
+                margin: 0.5rem auto 0;
+            }
+
+            .project-card {
+                width: 300px;
+                height: 380px;
+                top: 50%;
+            }
+    
+            .carousel-indicators {
+                margin: 3.5rem auto 1.5rem;  /* Increased top margin */
+            }
+    
+            footer {
+            margin-top: 2rem;
+            }
+    
+            .nav-arrow {
+                width: 56px;
+                height: 56px;
+            }
+
+            .nav-arrow.left {
+                left: 10px;
+            }
+
+            .nav-arrow.right {
+                right: 10px;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .carousel-indicators {
+                bottom: 15px;
+            }
+
+        }
+
+        @media (max-width: 480px) {}
+            @media (max-width: 480px) {
+            .carousel-container {
+                height: 500px;  /* Increased */
+                padding: 20px 5px 30px;  /* Added bottom padding */
+                margin: 0.5rem auto 0;
+            }
+
+            .project-card {
+                width: 280px;
+                height: 360px;
+                top: 50%;
+            }
+    
+            .carousel-indicators {
+                margin: 3rem auto 1rem;  /* Increased top margin */
+            }
+
+            .card-body {
+                bottom: 16px;
+                left: 16px;
+                right: 16px;
+                padding: 18px 20px;
+                gap: 10px;
+                border-radius: 14px;
+            }
+
+            .card-title {
+                font-size: 1.2rem;
+            }
+
+            .tag-pill {
+                font-size: 0.65rem;
+                padding: 3px 10px;
+                border-width: 1.5px;
+            }
+
+            .card-description {
+                font-size: 0.8rem;
+                line-height: 1.5;
+                margin-bottom: 10px;
+            }
+    
+            .project-type {
+                font-size: 0.65rem;
+            }
+
+            footer {
+                margin-top: 1.5rem;
+                padding: 2rem 2rem;
+            }
+
+            .nav-arrow {
+                width: 52px;
+                height: 52px;
+            }
+
+            .nav-arrow.left {
+                left: 5px;
+            }
+
+            .nav-arrow.right {
+                right: 5px;
+            }
+
+            .carousel-indicators {
+                bottom: 12px;
+            }
+
+            .hero-image {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+     <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="https://drive.google.com/file/d/1sS4twDhUD-qvhKPzjv6B8NfV_LuKf29L/view?usp=drive_link">Resume</a></li>
+        </ul>
+    </nav>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>About Me</h1>
+            <p>I'm an artist and digital designer with a background in art education. My experience as an art teacher, work with an early stage ed-tech startup, and graduate level interaction design project work, allow me to design solutions that improve engagement and accessibility for diverse users. </p>
+            <p>When I am not designing, you can find me reading, making art, taking a yoga class, traveling or spending time with my husband and our two kitties.</p>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+
+    <section class="experience-section">
+        <div class="experience-container">
+            <div class="card">
+                <img src="img/about/colearn.jpeg" alt="CoLearn login screen showing a login form on the left with the CoLearn logo and fields for email and password, and an illustration on the right of a laptop with books, a notebook, a pen, and a clock, conveying a welcoming and organized online learning environment. The text CoLearn appears above the login form. The overall tone is friendly and professional.">
+                <h2>UX & Freelance</h2>
+               <p>At CoLearn Academy, a virtual charter school startup with 300 students, I streamlined UX-focused processes in a fast-paced, lean environment. (Some project details available upon request due to an NDA.)<p>
+                <p>Other highlights include increasing engagement by 40% for Electric Avenue Bikes, designing interactive learning experiences for Compudopt, and improving accessibility and sales for Eva Konopka Art through a website redesign. 
+                    Email me to learn more and collaborate on new project adventures.</p>
+                <div class="button-group">
+                    <a href="mailto:saramckeecre8tive@gmail.com" class="btn">Email Me</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="img/artwork/painting.jpeg" alt="Abstract portrait with bold, expressive brushstrokes in dark and vibrant colors; facial features emerge from a textured background of yellow, green, and purple. The surrounding environment is energetic and layered, conveying a sense of introspection and emotional intensity. No visible text appears in the artwork.">
+                <h2>Art & Instruction</h2>
+                <p>At Fort Bend ISD, I led 200+ art projects and authored district-wide curriculum, guiding students in creating their own work. At Compudopt, I developed UX/UI lessons, 
+                    shaping my UX approach for intuitive, inclusive digital experiences.</p>
+                <p>I continue to create art and explore visual storytelling on a daily basis. This fuels my creativity and stregnthens my visual experience skills.
+                    Click the link below to see my personal artwork explorations.</p>
+                <div class="button-group">
+                    <a href="artwork.html" class="btn">View Artwork</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/sara-mckee/" target="_blank" rel="noopener noreferrer" aria-label="Connect on LinkedIn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/smcre8tive" target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+</html>
