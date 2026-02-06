@@ -15,7 +15,7 @@
         body {
             font-family: 'Lexend', sans-serif;
             font-weight: 300;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: #fdfdfd;
             color: #fdfdfd;
             overflow-x: hidden;
         }
@@ -72,7 +72,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: #fdfdfd;
             backdrop-filter: blur(10px);
             padding: 1.25rem 2rem;
             z-index: 1000;
@@ -384,15 +384,20 @@
 
     <script>
         const artworks = [
-            { title: 'Ode to Griffon', category: 'sculpture', image: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800', description: 'A journey through abstract spaces' },
-            { title: 'Urban Solitude', category: 'photography', image: 'https://images.unsplash.com/photo-1514539079130-25950c84af65?w=800', description: 'Capturing moments in the city' },
-            { title: 'Crimson Horizon', category: 'painting', image: 'https://images.unsplash.com/photo-1578926314433-e2789279f4aa?w=800', description: 'Sunset in oil and canvas' },
-            { title: 'Digital Synthesis', category: 'digital', image: 'https://images.unsplash.com/photo-1549887534-1541e9326642?w=800', description: 'Merging technology and art' },
-            { title: 'Natural Light', category: 'photography', image: 'https://images.unsplash.com/photo-1506477331477-33d5d8b3dc85?w=800', description: 'Playing with shadows' },
-            { title: 'Abstract Motion', category: 'painting', image: 'https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=800', description: 'Movement in stillness' },
-            { title: 'Neon Nights', category: 'digital', image: 'https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=800', description: 'Cyberpunk aesthetics' },
-            { title: 'Portrait Study', category: 'photography', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800', description: 'Human expression captured' },
-            { title: 'Color Theory', category: 'painting', image: 'https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=800', description: 'Exploring vibrant palettes' }
+            { title: 'Ode to Griffon', category: 'sculpture', image: 'img/artwork/ceramic1.jpeg', description: 'Terra-cotta bust with griffon.' },
+            { title: 'Honey Trap', category: 'sculpture', image: 'img/artwork/ceramic2.jpeg', description: 'Porcelain hive box with sculpted human hand.' },
+            { title: 'Feel It All', category: 'digital', image: 'img/artwork/digitalfeel.jpeg', description: 'Digital paiting expressing a mantra.' },
+            { title: 'Roll With It', category: 'digital', image: 'img/artwork/digitalfeel1.jpeg', description: 'Digital paiting expressing a mantra.' },
+            { title: 'Root', category: 'digital', image: 'img/artwork/digitalfeel5.jpg', description: 'Digital paiting expressing a mantra.' },
+            { title: 'Button People', category: 'sculpture', image: 'img/artwork/faces.jpeg', description: 'A series of terra-cotta wall scultpures depicting various personalities with button eyes.' },
+            { title: 'Sins', category: 'sculpture', image: 'img/artwork/faces3.jpeg', description: 'A series of ceramic wall sculptures depicting the seven sins.' },
+            { title: 'Magicians', category: 'sculpture', image: 'img/artwork/faces4.jpeg', description: 'A series of ceramic wall scuptures depicting characters from a novel.' },
+            { title: 'Gracie', category: 'mixedmedia', image: 'img/artwork/painting3.jpeg', description: 'A dog painted with water-clor and chalk.' },
+            { title: 'Rebirth', category: 'mixedmedia', image: 'img/artwork/mixedmedia1.jpeg', description: 'Bones of crows and flowers collage with colored pencil, sown-thread and magazines.' },
+            { title: 'Face It', category: 'painting', image: 'img/artwork/painting.jpeg', description: 'Acrylic painting of a human profile.' },
+            { title: 'The Man', category: 'painting', image: 'img/artwork/painting1.jpeg', description: 'Acrylic painting of an old man who knows things.' },
+            { title: 'Red', category: 'painting', image: 'img/artwork/painting2.jpeg', description: 'Acrylic painting of a woman who knows nothing.' },
+            { title: 'Rebels Series', category: 'sculpture', image: 'img/artwork/sculpture2.jpeg', description: 'Porcelian depictions of Leia and Yoda.' },
         ];
 
         const gallery = document.getElementById('gallery');

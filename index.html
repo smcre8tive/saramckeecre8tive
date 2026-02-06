@@ -210,11 +210,23 @@
             backface-visibility: visible;
             border: 1px solid rgba(207, 159, 135, 0.3);  /* Brand color border */
             pointer-events: none;
+            cursor: default;
         }
 
         .project-card.front-card {
             pointer-events: auto;
-            cursor:pointer;
+            cursor: pointer;  /* Show pointer cursor */
+        }
+
+        .project-card.front-card:hover {
+            transform: translate(-50%, -50%) scale(1.05) translateZ(30px);
+            box-shadow: 0 16px 64px rgba(207, 159, 135, 0.25),
+            0 2px 8px rgba(0, 0, 0, 0.08),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+        }
+
+        .project-card.front-card:active {
+            transform: translate(-50%, -50%) scale(1.02) translateZ(30px);
         }
 
         .project-card:hover {
@@ -223,16 +235,6 @@
                 0 2px 8px rgba(0, 0, 0, 0.08),
                 inset 0 0 0 1px rgba(255, 255, 255, 0.6);
             background: rgba(207, 159, 135, 0.2);  /* Slightly more opaque on hover */
-        }
-        
-        .project-card.front-card .card-link:hover ~ .card-body,
-        .project-card.front-card:hover .card-body {
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .project-card.front-card .card-link:hover,
-        .project-card.front-card:hover {
-            transform: translate(-50%, -50%) scale(1.03) translateZ(30px);
         }
 
         /* Card Content */
@@ -272,18 +274,13 @@
             transition: opacity 0.4s ease;
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
         .card-body {
             position: absolute;
             bottom: 16px;
             left: 16px;
             right: 16px;
             padding: 18px 20px;
-            background: rgba(207, 159, 135, 0.25);  /* More noticeable tint */
+            background: rgba(207, 159, 135, 0.25);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             display: flex;
@@ -296,8 +293,18 @@
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
-                0 2px 8px rgba(0, 0, 0, 0.05),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            0 2px 8px rgba(0, 0, 0, 0.05),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        }
+
+        /* Add subtle pulse animation to front card */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .project-card.front-card .card-body {
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .card-title {
@@ -330,29 +337,6 @@
             cursor: default;
             margin-right: 8px;  /* Add this line */
             margin-bottom: 6px;  /* Add this for vertical spacing if they wrap */
-        }
-        .card-link {
-            display: block;
-            width: 100%;
-            height: 100%;
-            text-decoration: none;
-            color: inherit;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .card-link:hover .card-content {
-            transform: translateY(-2px);
-        }
-
-        .card-link:active .card-content {
-            transform: translateY(0);
-        }
-
-        .card-link:focus {
-             outline: 2px solid rgba(207, 159, 135, 0.5);
-            outline-offset: 2px;
-            border-radius: 20px;
         }
 
         /* Navigation Arrows */
@@ -631,7 +615,13 @@
             gap: 1.5rem;
             font-size: 0.95;
         }
+        
+        .project-card.front-card:active {
+            transform: translate(-50%, -50%) scale(0.98) translateZ(30px);
+            box-shadow: 0 12px 48px rgba(207, 159, 135, 0.2);
+        }
     }
+
     </style>
 </head>
 <body>
@@ -712,23 +702,20 @@
         {
             title: "How We Feel App",
             type: "UX Design",
-            tags: ["#AppleWatch", "#Redesign",],
+            tags: ["#ComingSoon",],
             image: "img/hwf/hero.jpeg",
-            link:"hwf.html"
         },
         {
             title: "SustainAbode",
             type: "UX Design",
-            tags: ["#iOS", "#Android",],
+            tags: ["#ComingSoon",],
             image: "img/sustainabode/hero.jpeg",
-            link:"sustainabode.html"
         },
         {
             title: "SoloDareity",
             type: "UX Design",
-            tags: ["#Responsive", "#Web-App"],
+            tags: ["#ComingSoon",],
             image: "img/solodareity/hero.jpeg",
-            link:"solodareity.html"
         }
     ];
 
@@ -748,66 +735,81 @@
         projects.forEach((project, index) => {
             const card = document.createElement('div');
             card.className = 'project-card';
-            card.innerHTML = `
+    
+        // Create card without link wrapper
+        card.innerHTML = `
             <div class="card-content">
-                <div class="card-image" style="background-image: url('${project.image}');"></div>
-                    <div class="card-body">
+                <div class="card-image"></div>
+                <div class="card-body">
                     <h3 class="card-title">${project.title}</h3>
                     <div class="card-tags">
                         ${project.tags.map(tag => `<span class="tag-pill">${tag}</span>`).join('')}
                     </div>
                 </div>
             </div>
-            `;
-            
+        `;
+    
+        // Set background image and position separately
+        const cardImage = card.querySelector('.card-image');
+        cardImage.style.backgroundImage = `url('${project.image}')`;
+        cardImage.style.backgroundPosition = project.position || 'center center';
+    
+        // Simple click handler - just navigate, no conditions
+        card.onclick = function() {
+            window.location.href = project.link;
+        };
+        card.style.cursor = 'pointer';
+    
         // Position cards in 3D circle
-            const angle = angleStep * index;
-
-        // Adjust radius based on screen size
+        const angle = angleStep * index;
         const screenWidth = window.innerWidth;
-        const radius = screenWidth <= 480 ? 320 : (screenWidth <= 768 ? 350 : 360);  // Reduced from 380
-        
-        // Calculate z-index based on position (cards in front get higher z-index)
+        const radius = screenWidth <= 480 ? 320 : (screenWidth <= 768 ? 350 : 360);
+    
+        // Calculate z-index based on position
         const zPosition = Math.cos((angle * Math.PI) / 180) * radius;
         card.style.zIndex = Math.round(zPosition + 500);
-
+    
         card.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(${radius}px)`;
-            
-            stage.appendChild(card);
+    
+        stage.appendChild(card);
 
-            // Create indicator
-            const indicator = document.createElement('div');
-            indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
-            indicator.addEventListener('click', () => goToSlide(index));
+        // Create indicator
+        const indicator = document.createElement('div');
+        indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
+        indicator.addEventListener('click', () => goToSlide(index));
             indicatorsContainer.appendChild(indicator);
-        });
-
+});
+    
         // Rotate carousel
         function rotateCarousel() {
-            const angle = -angleStep * currentIndex;
-            stage.style.transform = `rotateY(${angle}deg)`;
-            
-            // Update z-index and pointer-events for all cards based on their current rotation
-            const cards = stage.querySelectorAll('.project-card');
-            cards.forEach((card, index) => {
-                const cardAngle = (angleStep * index) - (angleStep * currentIndex);
-                const normalizedAngle = ((cardAngle % 360) + 360) % 360;
-                const zPosition = Math.cos((cardAngle * Math.PI) / 180) * 450;
-                card.style.zIndex = Math.round(zPosition + 500);
-                
-                // Only enable pointer events for the front card (angle close to 0)
-                if (normalizedAngle < 30 || normalizedAngle > 330) {
-                    card.classList.add('front-card');
-                } else {
-                    card.classList.remove('front-card');
-                }
-            });
-            
-            // Update indicators
-            document.querySelectorAll('.indicator').forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
-            });
-        }
+        const angle = -angleStep * currentIndex;
+        stage.style.transform = `rotateY(${angle}deg)`;
+    
+        // Update z-index and pointer-events for all cards based on their current rotation
+        const cards = stage.querySelectorAll('.project-card');
+        cards.forEach((card, index) => {
+            const cardAngle = (angleStep * index) - (angleStep * currentIndex);
+            const normalizedAngle = ((cardAngle % 360) + 360) % 360;
+            const zPosition = Math.cos((cardAngle * Math.PI) / 180) * 450;
+            card.style.zIndex = Math.round(zPosition + 500);
+        
+            // Only enable pointer events for the front card (angle close to 0)
+            if (normalizedAngle < 30 || normalizedAngle > 330) {
+                card.classList.add('front-card');
+                card.style.cursor = 'pointer';
+                card.style.pointerEvents = 'auto';
+            } else {
+                card.classList.remove('front-card');
+                card.style.cursor = 'default';
+                card.style.pointerEvents = 'none';
+            }
+        });
+    
+        // Update indicators
+        document.querySelectorAll('.indicator').forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentIndex);
+        });
+}
 
         // Navigate to specific slide
         function goToSlide(index) {
@@ -910,6 +912,9 @@
                 </div>
             </div>
         </a>
+
+        // Initial rotation
+        rotateCarousel();
 `;
     </script>
 </body>
