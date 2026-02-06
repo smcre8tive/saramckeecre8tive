@@ -7,12 +7,80 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
      <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <style>
-            /* Navigation Bar */
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            font-weight: 300;
+            background: #fdfdfd;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            color: #0f1014;
+        }
+         /* Main Heading */
+        h1{
+            font-family: 'Lora', serif;
+            font-size: 3.857rem;
+            font-weight: 600;
+            color: #0f1014;
+            margin-bottom: 20px;
+        }
+        
+        /* Project Title */
+        h2 {
+            font-family: 'Lora', serif;
+            font-size: 2.929rem;
+            font-weight: 500;
+            color: #0f1014;
+        }
+        
+        /* Subheading/Section Title */
+        h3 {
+            font-family: 'Lexend', sans-serif;
+            font-size: 2.214rem;
+            font-weight: 300;
+            color: #0f1014;
+            text-transform: uppercase;
+        }
+        
+        /* Quotes/Secondary Headings */
+        h4{
+            font-family: 'Lora', serif;
+            font-size: 1.714rem;
+            font-weight: 400;
+            color: #0f1014;
+            font-style: italic;
+        }
+        
+        /* Menu Items/Minor Headings */
+        h5{
+            font-family: 'Lora', serif;
+            font-size: 1.714rem;
+            font-weight: 500;
+            color: #0f1014;
+        }
+        
+        /*Buttons*/
+        h6 {
+            font-family: 'Lexend', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #0f1014;
+            text-transform: uppercase;
+        }
+
+        /* Navigation Bar */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: #fdfdfd;
             backdrop-filter: blur(10px);
             padding: 1.25rem 2rem;
             z-index: 1000;
@@ -30,7 +98,7 @@
         }
 
         nav a {
-            color: #2a2a2a;
+            color: #0f1014;
             text-decoration: none;
             font-weight: 400;
             font-size: 1.05rem;
@@ -45,7 +113,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #CF9F87;
+            background: #857028;
             transition: width 0.3s ease;
         }
 
@@ -56,7 +124,7 @@
 
         nav a:hover,
         nav a:focus {
-            color: #CF9F87;
+            color: #857028;
             outline: none;
         }
         * {
@@ -64,12 +132,11 @@
             padding: 0;
             box-sizing: border-box;
         }
-
-        body {
-            font-family: 'Lexend', sans-serif;
-            font-weight: 300;
-            color: #424242;
-            line-height: 1.6;
+    
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 150px 20px 60px !important;
         }
 
         .hero {
@@ -83,19 +150,10 @@
             align-items: center;
         }
 
-        .hero-content h1 {
-            font-family: 'Lora', serif;
-            font-weight: 300;
-            font-size: 3.5rem;
-            color: #424242;
-            margin-bottom: 20px;
-            margin-top: 20px;
-        }
-
         .hero-content p {
             grid-area: text;
-            font-size: 1.1rem;
-            color: #424242;
+            font-size: 1rem;
+            color: #0f1014;
             line-height: 1.8;
         }
 
@@ -107,7 +165,7 @@
             height: 300px;
             max-width: 90vw;
             aspect-ratio: 1 / 1;
-            background-image: url("img/about/headshot.jpg");
+            background-image: url("img/about/headshot.jpeg");
             background-size: cover;
             background-position: center;
             border-radius: 20px;
@@ -115,7 +173,7 @@
         }
 
         .experience-section {
-            background-color: #f9f9f9;
+            background-color: #fdfdfd;
             padding: 80px 40px;
         }
 
@@ -128,7 +186,7 @@
         }
 
         .card {
-            background: white;
+            background: #fdfdfd;
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
@@ -144,7 +202,7 @@
             font-family: 'Lora', serif;
             font-weight: 300;
             font-size: 2rem;
-            color: #424242;
+            color: #0f1014;
             margin-bottom: 15px;
         }
 
@@ -152,16 +210,17 @@
             font-family: 'Lexend', sans-serif;
             font-weight: 300;
             font-size: 1.2rem;
-            color: #424242;
+            color: #0f1014;
             margin-bottom: 20px;
         }
 
         .card p {
             font-size: 1rem;
-            color: #424242;
+            color: #0f1014;
             margin-bottom: 30px;
             line-height: 1.8;
         }
+
         .card img {
             width: 100%;
             height: 200px;           /* Fixed height for uniformity */
@@ -182,8 +241,8 @@
         .btn {
             display: inline-block;
             padding: 12px 30px;
-            background-color: #2a2a2a;
-            color: white;
+            background-color: #857028;
+            color: #fdfdfd;
             text-decoration: none;
             border-radius: 5px;
             font-family: 'Lexend', sans-serif;
@@ -193,75 +252,193 @@
         }
 
         .btn:hover {
-            background-color: #CF9F87;
+            background-color: #857028;
             transform: scale(1.05);
         }
-        /* Footer */
-        footer {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(207, 159, 135, 0.2);
-            margin-top: 4rem;
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            align-items: center;
+     /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 2rem;
+            }
+    
+    
+            nav ul {
+                 position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 80px 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+    
+            nav ul.active {
+                right: 0;
+            }
+    
+            nav li {
+                width: 100%;
+            }
+    
+            nav a {
+                font-size: 1.2rem;
+                display: block;
+                width: 100%;
+                padding: 0.5rem 0;
+            }
+    
+            nav a::after {
+                bottom: 0;
+            }
+    
+    
+            .hero-section {
+                padding: 6rem 2rem 2rem;
+            }
+    
+            .hero-title {
+                margin-bottom: 1rem;
+            }
+          
+            .carousel-container {
+                height: 540px;  /* Increased */
+                padding: 30px 10px 30px;  /* Added bottom padding */
+                margin: 0.5rem auto 0;
+            }
+
+            .project-card {
+                width: 300px;
+                height: 380px;
+                top: 50%;
+            }
+    
+            .carousel-indicators {
+                margin: 3.5rem auto 1.5rem;  /* Increased top margin */
+            }
+    
+            footer {
+            margin-top: 2rem;
+            }
+    
+            .nav-arrow {
+                width: 56px;
+                height: 56px;
+            }
+
+            .nav-arrow.left {
+                left: 10px;
+            }
+
+            .nav-arrow.right {
+                right: 10px;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .carousel-indicators {
+                bottom: 15px;
+            }
+
         }
 
-        .social-links a {
-            color: #2a2a2a;
-            text-decoration: none;
-            font-size: 2rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(207, 159, 135, 0.1);
-        }
+        @media (max-width: 480px) {}
+            @media (max-width: 480px) {
+            .carousel-container {
+                height: 500px;  /* Increased */
+                padding: 20px 5px 30px;  /* Added bottom padding */
+                margin: 0.5rem auto 0;
+            }
 
-        .social-links a:hover {
-            color: #CF9F87;
-            background: rgba(207, 159, 135, 0.2);
-            transform: translateY(-3px);
-        }
-        
+            .project-card {
+                width: 280px;
+                height: 360px;
+                top: 50%;
+            }
+    
+            .carousel-indicators {
+                margin: 3rem auto 1rem;  /* Increased top margin */
+            }
 
-    @media (max-width: 768px) {
-        .hero {
-            grid-template-columns: 1fr; /* Changes to a single column layout */
-            grid-template-areas:
-            "image" /* Places the image grid area at the top */
-            "text";  /* Places the text grid area below the image */
-            padding: 40px 20px;
-            justify-items: center; /* Centers items horizontally */
-        }
+            .card-body {
+                bottom: 16px;
+                left: 16px;
+                right: 16px;
+                padding: 18px 20px;
+                gap: 10px;
+                border-radius: 14px;
+            }
 
-        .hero-content {
-            grid-area: text; /* Assigns the grid area name "text" */
-        }
+            .card-title {
+                font-size: 1.2rem;
+            }
 
-        .hero-image {
-            grid-area: image; /* Assigns the grid area name "image" */
-            max-width: 100%; /* Ensures the image never exceeds its container's width */
-            height: auto;    /* Automatically adjusts height to maintain aspect ratio */
-        }
+            .tag-pill {
+                font-size: 0.65rem;
+                padding: 3px 10px;
+                border-width: 1.5px;
+            }
 
-        .hero-content h1 {
-        font-size: 2.5rem;
-        }
+            .card-description {
+                font-size: 0.8rem;
+                line-height: 1.5;
+                margin-bottom: 10px;
+            }
+    
+            .project-type {
+                font-size: 0.65rem;
+            }
 
-        .experience-section {
-            padding: 50px 20px;
+            footer {
+                margin-top: 1.5rem;
+                padding: 2rem 2rem;
+            }
+
+            .nav-arrow {
+                width: 52px;
+                height: 52px;
+            }
+
+            .nav-arrow.left {
+                left: 5px;
+            }
+
+            .nav-arrow.right {
+                right: 5px;
+            }
+
+            .carousel-indicators {
+                bottom: 12px;
+            }
+
+            .hero-image {
+                width: 120px;
+                height: 120px;
+            }
         }
-    }
     </style>
 </head>
 <body>
@@ -270,7 +447,7 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="https://drive.google.com/file/d/1sS4twDhUD-qvhKPzjv6B8NfV_LuKf29L/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a>
+            <li><a href="https://drive.google.com/file/d/1sS4twDhUD-qvhKPzjv6B8NfV_LuKf29L/view?usp=drive_link">Resume</a></li>
         </ul>
     </nav>
     <section class="hero">
@@ -286,7 +463,7 @@
         <div class="experience-container">
             <div class="card">
                 <img src="img/about/colearn.jpeg" alt="CoLearn login screen showing a login form on the left with the CoLearn logo and fields for email and password, and an illustration on the right of a laptop with books, a notebook, a pen, and a clock, conveying a welcoming and organized online learning environment. The text CoLearn appears above the login form. The overall tone is friendly and professional.">
-                <h3>UX & Freelance Experience</h3>
+                <h2>UX & Freelance</h2>
                <p>At CoLearn Academy, a virtual charter school startup with 300 students, I streamlined UX-focused processes in a fast-paced, lean environment. (Some project details available upon request due to an NDA.)<p>
                 <p>Other highlights include increasing engagement by 40% for Electric Avenue Bikes, designing interactive learning experiences for Compudopt, and improving accessibility and sales for Eva Konopka Art through a website redesign. 
                     Email me to learn more and collaborate on new project adventures.</p>
@@ -297,7 +474,7 @@
 
             <div class="card">
                 <img src="img/artwork/painting.jpeg" alt="Abstract portrait with bold, expressive brushstrokes in dark and vibrant colors; facial features emerge from a textured background of yellow, green, and purple. The surrounding environment is energetic and layered, conveying a sense of introspection and emotional intensity. No visible text appears in the artwork.">
-                <h3>Art & Instruction Experience</h3>
+                <h2>Art & Instruction</h2>
                 <p>At Fort Bend ISD, I led 200+ art projects and authored district-wide curriculum, guiding students in creating their own work. At Compudopt, I developed UX/UI lessons, 
                     shaping my UX approach for intuitive, inclusive digital experiences.</p>
                 <p>I continue to create art and explore visual storytelling on a daily basis. This fuels my creativity and stregnthens my visual experience skills.
