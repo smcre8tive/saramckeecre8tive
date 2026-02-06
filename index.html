@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sara McKee - Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +24,13 @@
             flex-direction: column;
             overflow-x: hidden;
             color: #0f1014;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        html {
+            overflow-x: hidden;
+            width: 100%;
         }
         
         /* Main Heading */
@@ -163,11 +170,6 @@
             padding: 20px 10px 20px;  /* Added bottom padding */
             margin: 0.5rem auto 0;
             overflow: visible;
-        }
-        .carousel-container {
-            height: 420px;  /* Reduced from 500px */
-            padding: 20px 10px 20px;
-            margin: 0.5rem auto 0;
         }
 
         main {
@@ -526,8 +528,13 @@
 
     @media (max-width: 480px) {
            
+        body {
+            overflow-x: hidden; /* Prevent horizontal scrolling on very small screens */
+        }
+
         .hero-section {
             padding: 5rem 2rem 1.5rem;
+            width: 100%
         }
     
         .hero-title {
@@ -539,6 +546,9 @@
             height: 340px;  /* Reduced from 460px */
             padding: 20px 5px 20px;
             margin: 0.5rem auto 0;
+            overflow: hidden; /* Hide overflow on small screens */
+            width: 100%;
+            max-width: 100vw;
         }
 
         .carousel-stage {
@@ -575,6 +585,7 @@
     
         .carousel-indicators {
             margin: 2rem auto 0.75rem;
+            width: 100%
         }
     
         .indicator {
@@ -589,6 +600,7 @@
         footer {
             margin-top: 0.5rem;
             padding: 1.5rem 2rem;
+            width: 100%;
         }
     
         .social-links a {
@@ -608,6 +620,16 @@
 
         .nav-arrow.right {
             right: 5px;
+        }
+
+        nav {
+            padding: 1.25rem 1.5rem;
+            width: 100%;
+        }
+
+        nav ul {
+            gap: 1.5rem;
+            font-size: 0.95;
         }
     }
     </style>
@@ -829,30 +851,35 @@
                 nextSlide();
             }
         });
-
-        // Touch support for mobile
+        // Touch support for mobile - improved
         let touchStartX = 0;
         let touchEndX = 0;
         let touchStartY = 0;
         let touchEndY = 0;
+        let isSwiping = false;
 
         container.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
             touchStartY = e.changedTouches[0].screenY;
+            isSwiping = false;
         }, { passive: true });
 
         container.addEventListener('touchmove', (e) => {
-        // Prevent vertical scrolling while swiping horizontally
             const touchMoveX = e.changedTouches[0].screenX;
+            const touchMoveY = e.changedTouches[0].screenY;
             const diffX = Math.abs(touchMoveX - touchStartX);
-            const diffY = Math.abs(e.changedTouches[0].screenY - touchStartY);
+            const diffY = Math.abs(touchMoveY - touchStartY);
     
-            if (diffX > diffY) {
-                e.preventDefault();
+            // If horizontal swipe is detected
+            if (diffX > diffY && diffX > 10) {
+                isSwiping = true;
+                e.preventDefault(); // Prevent scrolling
             }
         }, { passive: false });
 
         container.addEventListener('touchend', (e) => {
+            if (!isSwiping) return;
+    
             touchEndX = e.changedTouches[0].screenX;
             touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
@@ -861,15 +888,15 @@
         function handleSwipe() {
             const diffX = touchEndX - touchStartX;
             const diffY = touchEndY - touchStartY;
-
-            if (Math.abs(diffX) > Math.abs(diffY)) {
-                // Horizontal swipe
-                if (diffX > 50) {
-                    prevSlide();
-                } else if (diffX < -50) {
-                    nextSlide();
+    
+            // Only handle if it's a horizontal swipe
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    prevSlide(); // Swipe right
+                } else {
+                    nextSlide(); // Swipe left
                 }
-            }
+            }   
         }
         card.innerHTML = `
             <a href="${project.link}" class="card-link">
