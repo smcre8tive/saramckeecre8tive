@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study - How We Feel for Apple Watch</title>
+    <title>Case Study - Includesign Projector Game</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
    <style>
@@ -17,143 +19,11 @@
             font-family: 'Lexend', sans-serif;
             font-weight: 300;
             line-height: 1.8;
-            color: #4a4a4a;
-            background-color: #fafafa;
+            color:#0f1014;
+            background-color: #fdfdfd;
         }
 
-            /* Navigation Bar */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1.25rem 2rem;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(207, 159, 135, 0.1);
-        }
-    
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav a {
-            color: #4a4a4a;
-            text-decoration: none;
-            font-weight: 400;
-            font-size: 1.05rem;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #CF9F87;
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after,
-        nav a:focus::after {
-            width: 100%;
-        }
-
-        nav a:hover,
-        nav a:focus {
-            color: #CF9F87;
-            outline: none;
-        }
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: space-around;
-            width: 48px;
-            height: 48px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1.5px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            cursor: pointer;
-            padding: 12px;
-            z-index: 1001;
-            position: relative;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            margin-top: 20px;
-        }
-
-        .hamburger:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.6);
-        }
-
-        .hamburger span {
-            width: 100%;
-            height: 2px;
-            background: #1a1a1a;
-            border-radius: 2px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: center;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-
-        .menu-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .menu-overlay.active {
-            display: block;
-            opacity: 1;
-        }
-
-        @media (max-width: 768px) {
-            nav ul.active ~ .menu-overlay {
-                display: block;
-                opacity: 1;
-            }
-        }
-    
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 150px 20px 60px !important;
-        }
-
+          /* Main Heading */
         h1{
             font-family: 'Lora', serif;
             font-size: 3.857rem;
@@ -203,22 +73,91 @@
             color: #1a1a1a;
             text-transform: uppercase;
         }
-
+         /* Other Text */
         .subtitle {
             font-size: 1.2rem;
-            color: #4a4a4a;
+            color: #0f1014;
             margin-bottom: 40px;
         }
 
         p {
             font-size: 1rem;
             margin-bottom: 20px;
-            color: #4a4a4a;
+            color:#0f1014;
         }
         
         a {
-            color: #CF9F87;
+            color:#857028;
             text-decoration: none;
+        }
+
+        blockquote {
+            font-size:1.1rem; 
+            font-style:italic; 
+            border-left:4px solid #857028; 
+            margin: 20px 0; 
+            padding-left: 18px; 
+            color:#0f1014; 
+            background:#E7E2D0;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.25rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(207, 159, 135, 0.1);
+        }
+    
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #0f1014;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #857028;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after,
+        nav a:focus::after {
+            width: 100%;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #857028;
+            outline: none;
+        }
+    
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 150px 20px 60px !important;
         }
 
         .image-container {
@@ -241,7 +180,7 @@
 
         .image-caption {
             font-size: 0.9rem;
-            color: #4a4a4a;
+            color: #0f1014;
             margin-top: 12px;
             font-style: italic;
         }
@@ -279,14 +218,14 @@
         }
 
         .lightbox-caption {
-            color: white;
+            color: #fdfdfd;
             text-align: center;
             margin-top: 20px;
             font-size: 1rem;
         }
         .button {
-            background: #2a2a2a;
-            color: white;
+            background: #857028;
+            color: #fdfdfd;
             border: none;
             padding: 12px 28px;
             border-radius: 25px;
@@ -304,7 +243,7 @@
             position: absolute;
             top: -40px;
             right: 0;
-            color: white;
+            color: #fdfdfd;
             font-size: 40px;
             cursor: pointer;
             background: none;
@@ -314,7 +253,7 @@
         }
 
         .close-btn:hover {
-            color: #CF9F87;
+            color: #857028;
         }
 
         .floating-menu {
@@ -322,7 +261,7 @@
             right: 40px;
             top: 50%;
             transform: translateY(-50%);
-            background: white;
+            background: #fdfdfd;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(207, 159, 135, 0.2);
             padding: 20px;
@@ -341,7 +280,7 @@
             font-family: 'Lora', serif;
             font-weight: 500;
             font-size: 1.2rem;
-            color: #4a4a4a;
+            color: #0f1014;
             margin-bottom: 15px;
             padding-bottom: 10px;
             border-bottom: 1px solid #e8d5ca;
@@ -350,7 +289,7 @@
         .menu-item {
             display: block;
             padding: 8px 0;
-            color: #666;
+            color: #0f1014;
             text-decoration: none;
             font-size: 0.9rem;
             transition: all 0.2s ease;
@@ -359,14 +298,14 @@
         }
 
         .menu-item:hover {
-            color: #CF9F87;
-            border-left-color: #CF9F87;
+            color: #857028;
+            border-left-color:#857028;
             padding-left: 15px;
         }
 
         .menu-item.active {
-            color: #CF9F87;
-            border-left-color: #CF9F87;
+            color: #857028;
+            border-left-color: #857028;
             font-weight: 400;
         }
 
@@ -374,8 +313,8 @@
             position: fixed;
             right: 40px;
             bottom: 40px;
-            background: #CF9F87;
-            color: white;
+            background: #857028;
+            color: #fdfdfd;
             border: none;
             border-radius: 50%;
             width: 60px;
@@ -394,14 +333,13 @@
             transform: scale(1.1);
             box-shadow: 0 6px 25px rgba(207, 159, 135, 0.4);
         }
-        /* Footer */
+       /* Footer */
         footer {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
+            background: #fdfdfd;
+            padding: 2rem 2rem;
             text-align: center;
-            border-top: 1px solid rgba(207, 159, 135, 0.2);
-            margin-top: 4rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            margin-top: 0.5rem;
         }
 
         .social-links {
@@ -412,7 +350,7 @@
         }
 
         .social-links a {
-            color: #1a1a1a;
+            color: #0f1014;
             text-decoration: none;
             font-size: 1.5rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -431,7 +369,7 @@
         }
 
         .social-links a:hover {
-            color: #1a1a1a;
+            color: #857028;
             background: rgba(255, 255, 255, 0.25);
             border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-2px) scale(1.05);
@@ -454,18 +392,10 @@
             margin-bottom: 80px;
         }
 
-         /* Responsive Design */
+          /* Responsive Design */
         @media (max-width: 768px) {
             nav {
                 padding: 1rem 2rem;
-            }
-    
-            .hamburger {
-                display: flex;
-                position: absolute;
-                right: 2rem;
-                top: 50%;
-                transform: translateY(-50%);
             }
     
             nav ul {
@@ -637,7 +567,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+   <nav>
         <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Menu">
             <span></span>
             <span></span>
@@ -853,7 +783,7 @@
         .case-study-nav {
         max-width: 1200px;
         margin: 0 auto;
-        border-top: 2px solid #e5e5e5;
+        border-top: 2px solid #fdfdfd;
         padding-top: 3rem;
         padding-left: 1.5rem;
         padding-right: 1.5rem;
@@ -873,7 +803,7 @@
         .case-study-nav .nav-label {
         font-family: 'Lexend', sans-serif;
         font-size: 0.875rem;
-        color: #9ca3af;
+        color: #0f1014;
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin-bottom: 0.75rem;
@@ -884,7 +814,7 @@
         font-family: 'Lora', serif;
         font-size: 2rem;
         font-weight: 600;
-        color: #1f2937;
+        color: #0f1014;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
@@ -900,12 +830,12 @@
         left: 0;
         width: 0;
         height: 2px;
-        background: #CF9F87;
+        background: #857028;
         transition: width 0.3s ease;
     }
 
     .case-study-nav .next-link:hover {
-        color: #CF9F87;
+        color: #857028;
     }
 
     .case-study-nav .next-link:hover::after {
@@ -937,8 +867,8 @@
     }
 
     .case-study-nav .back-top:hover {
-        color: #CF9F87;
-        background: #f9f9f9;
+        color: #857028;
+        background: #fdfdfd;
     }
 
     .case-study-nav .arrow-up {
@@ -1070,40 +1000,6 @@
                 document.body.style.overflow = 'auto';
             }
         });
-         // Hamburger Menu Toggle
-        const hamburger = document.getElementById('hamburgerBtn');
-        const navMenu = document.getElementById('navMenu');
-
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-
-        // Close menu when clicking on a link
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            }
-            });
-        }
-
-        function toggleMenu() {
-            const hamburger = document.getElementById('hamburgerBtn');
-            const navMenu = document.getElementById('navMenu');
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        }   
     </script>
 </body>
 <!-- Footer -->
