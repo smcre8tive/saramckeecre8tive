@@ -358,6 +358,21 @@
             background: #0f1014;
         }
 
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
         /* Footer - Matching Style Guide */
         footer {
             background: #fdfdfd;
@@ -542,7 +557,9 @@
             }
 
             .floating-menu {
-                display: none;
+                right: 20px;
+                max-width: 200px;
+                padding: 15px;
             }
 
             .toggle-menu-btn {

@@ -256,15 +256,19 @@
             color: #857028;
         }
 
+        /* Floating Menu - Matching Glass Morphism from Style Guide */
         .floating-menu {
             position: fixed;
             right: 40px;
             top: 50%;
             transform: translateY(-50%);
-            background: #fdfdfd;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(207, 159, 135, 0.2);
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 25px;
             z-index: 100;
             transition: all 0.3s ease;
             max-width: 250px;
@@ -445,22 +449,6 @@
             .hero-title {
                 margin-bottom: 1rem;
             }
-          
-            .carousel-container {
-                height: 540px;  /* Increased */
-                padding: 30px 10px 30px;  /* Added bottom padding */
-                margin: 0.5rem auto 0;
-            }
-
-            .project-card {
-                width: 300px;
-                height: 380px;
-                top: 50%;
-            }
-    
-            .carousel-indicators {
-                margin: 3.5rem auto 1.5rem;  /* Increased top margin */
-            }
     
             footer {
             margin-top: 2rem;
@@ -483,8 +471,10 @@
                 gap: 1.5rem;
             }
 
-            .carousel-indicators {
-                bottom: 15px;
+            .floating-menu {
+                right: 20px;
+                max-width: 200px;
+                padding: 15px;
             }
 
         }
