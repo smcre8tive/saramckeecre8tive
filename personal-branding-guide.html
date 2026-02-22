@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sara McKee - Personal Branding Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@300;400&family=Lexend:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            font-weight: 300;
+            background: #fdfdfd;
+            color: #0f1014;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        /* Header */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 100px;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #fdfdfd 0%, #f5f5f5 100%);
+            border-radius: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(133, 112, 40, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, -30px); }
+        }
+
+        .brand-header h1 {
+            font-family: 'Lora', serif;
+            font-weight: 300;
+            font-size: 5rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #0f1014;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand-header p {
+            font-size: 1.5rem;
+            color: #857028;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 100px;
+        }
+
+        .section-title {
+            font-family: 'Lora', serif;
+            font-weight: 300;
+            font-size: 3.5rem;
+            color: #0f1014;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #857028 0%, transparent 100%);
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 50px;
+            max-width: 900px;
+        }
+
+        /* Brand Identity */
+        .brand-box {
+            background: white;
+            padding: 60px;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            margin-bottom: 40px;
+        }
+
+        .brand-box h3 {
+            font-family: 'Lora', serif;
+            font-size: 2rem;
+            color: #0f1014;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .brand-box p {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .brand-attributes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .attribute-card {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 4px solid #857028;
+        }
+
+        .attribute-card h4 {
+            font-size: 1.3rem;
+            color: #0f1014;
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        .attribute-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Voice & Tone */
+        .tone-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .tone-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .tone-card h4 {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            color: #857028;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .tone-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tone-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #333;
+            font-size: 1.05rem;
+        }
+
+        .tone-list li:last-child {
+            border-bottom: none;
+        }
+
+        .tone-list li::before {
+            content: '✓';
+            color: #857028;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Messaging */
+        .message-box {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            padding: 60px;
+            border-radius: 24px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .message-box h4 {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            color: #857028;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .message-box p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Social Media Guidelines */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .platform-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            border-top: 5px solid #857028;
+        }
+
+        .platform-card h4 {
+            font-family: 'Lora', serif;
+            font-size: 1.6rem;
+            color: #0f1014;
+            margin-bottom: 20px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .platform-icon {
+            font-size: 2rem;
+        }
+
+        .platform-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .platform-card li {
+            padding: 10px 0;
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .platform-card li::before {
+            content: '•';
+            color: #857028;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Hashtag Strategy */
+        .hashtag-section {
+            background: #f9f9f9;
+            padding: 50px;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .hashtag-section h4 {
+            font-family: 'Lora', serif;
+            font-size: 1.8rem;
+            color: #0f1014;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .hashtag-category {
+            margin-bottom: 30px;
+        }
+
+        .hashtag-category h5 {
+            font-size: 1.2rem;
+            color: #857028;
+            margin-bottom: 15px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hashtag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .hashtag {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .hashtag:hover {
+            background: #857028;
+            color: white;
+            border-color: #857028;
+        }
+
+        /* Content Pillars */
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .pillar-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pillar-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .pillar-card h4 {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem;
+            color: #0f1014;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .pillar-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .brand-header h1 {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .tone-grid,
+            .platform-grid,
+            .pillar-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="brand-header">
+            <h1>Personal Brand Guide</h1>
+            <p>Sara McKee | UX/UI Designer</p>
+        </div>
+
+        <!-- Brand Identity -->
+        <section class="section">
+            <h2 class="section-title">Brand Identity</h2>
+            <p class="section-description">
+                A clear, compelling personal brand that positions Sara as a thoughtful, accomplished UX/UI designer who prioritizes accessibility and inclusive design.
+            </p>
+
+            <div class="brand-box">
+                <h3>Core Brand Statement</h3>
+                <p>
+                    Sara McKee is a UX/UI designer who believes exceptional design works for everyone. With expertise in inclusive design, accessibility standards, and elegant visual systems, she creates digital experiences that balance aesthetic excellence with functional usability. Her work demonstrates that accessibility and beauty aren't competing values—they're complementary principles that elevate user experiences.
+                </p>
+            </div>
+
+            <div class="brand-attributes">
+                <div class="attribute-card">
+                    <h4>Mission</h4>
+                    <p>To create digital experiences that are beautiful, functional, and accessible to all users—proving that inclusive design elevates rather than constrains creativity.</p>
+                </div>
+
+                <div class="attribute-card">
+                    <h4>Vision</h4>
+                    <p>A digital world where accessibility is the foundation of great design, not an afterthought—where every user can engage with elegant, intuitive interfaces.</p>
+                </div>
+
+                <div class="attribute-card">
+                    <h4>Values</h4>
+                    <p>Inclusivity, craftsmanship, user empathy, continuous learning, collaboration, and attention to detail in every pixel and interaction.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Voice & Tone -->
+        <section class="section">
+            <h2 class="section-title">Voice & Tone</h2>
+            <p class="section-description">
+                How Sara communicates across all platforms and touchpoints.
+            </p>
+
+            <div class="tone-grid">
+                <div class="tone-card">
+                    <h4>We Are</h4>
+                    <ul class="tone-list">
+                        <li>Professional yet approachable</li>
+                        <li>Confident without being arrogant</li>
+                        <li>Thoughtful and detail-oriented</li>
+                        <li>Passionate about accessibility</li>
+                        <li>Clear and concise</li>
+                        <li>Warm and collaborative</li>
+                        <li>Solution-focused</li>
+                    </ul>
+                </div>
+
+                <div class="tone-card">
+                    <h4>We Are Not</h4>
+                    <ul class="tone-list">
+                        <li>Overly technical or jargon-heavy</li>
+                        <li>Dismissive of constraints</li>
+                        <li>Trend-obsessed or superficial</li>
+                        <li>Defensive or argumentative</li>
+                        <li>Generic or templated</li>
+                        <li>Overly casual or unprofessional</li>
+                        <li>Self-promotional without substance</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Messaging -->
+        <section class="section">
+            <h2 class="section-title">Key Messaging</h2>
+            <p class="section-description">
+                Core messages that should be woven throughout all communications.
+            </p>
+
+            <div class="message-box">
+                <h4>Primary Message</h4>
+                <p>
+                    "I create accessible, user-centered digital experiences that balance aesthetic excellence with functional usability."
+                </p>
+            </div>
+
+            <div class="message-box">
+                <h4>Differentiator</h4>
+                <p>
+                    "Accessibility isn't a constraint—it's a catalyst for better design. My work proves that inclusive design principles lead to more elegant, more thoughtful solutions for all users."
+                </p>
+            </div>
+
+            <div class="message-box">
+                <h4>Proof Points</h4>
+                <p>
+                    "6+ years creating WCAG 2.1 AA compliant interfaces • 15+ client projects • 35% increase in user engagement • Comprehensive design systems • User research-backed decisions"
+                </p>
+            </div>
+        </section>
+
+        <!-- Content Pillars -->
+        <section class="section">
+            <h2 class="section-title">Content Pillars</h2>
+            <p class="section-description">
+                The four main themes for all content creation and social media posts.
+            </p>
+
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">🎨</div>
+                    <h4>Portfolio Work</h4>
+                    <p>Showcase projects, case studies, design processes, and final deliverables with explanations of approach and results.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">♿</div>
+                    <h4>Accessibility Insights</h4>
+                    <p>Share knowledge about inclusive design, accessibility standards, tips for designers, and user stories that highlight impact.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">💡</div>
+                    <h4>Design Thinking</h4>
+                    <p>Discuss UX methodologies, design trends, tools, workflows, and professional development in the design field.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">🤝</div>
+                    <h4>Career & Growth</h4>
+                    <p>Share job search updates, industry insights, collaboration opportunities, and lessons learned from projects.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Strategy -->
+        <section class="section">
+            <h2 class="section-title">Social Media Guidelines</h2>
+            <p class="section-description">
+                Platform-specific strategies to maximize reach and engagement.
+            </p>
+
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <h4><span class="platform-icon">💼</span> LinkedIn</h4>
+                    <ul>
+                        <li><strong>Tone:</strong> Professional, thought-leadership</li>
+                        <li><strong>Frequency:</strong> 3-5 posts per week</li>
+                        <li><strong>Content:</strong> Case studies, industry insights, job updates</li>
+                        <li><strong>Best Times:</strong> Tue-Thu, 8-10 AM or 12-2 PM</li>
+                        <li><strong>Format:</strong> Text + image/carousel, articles</li>
+                        <li><strong>Engagement:</strong> Comment on others' posts, join design groups</li>
+                    </ul>
+                </div>
+
+                <div class="platform-card">
+                    <h4><span class="platform-icon">📸</span> Instagram</h4>
+                    <ul>
+                        <li><strong>Tone:</strong> Visual, creative, behind-the-scenes</li>
+                        <li><strong>Frequency:</strong> 3-4 posts/week + daily stories</li>
+                        <li><strong>Content:</strong> Portfolio pieces, process shots, design tips</li>
+                        <li><strong>Best Times:</strong> 9-11 AM or 7-9 PM</li>
+                        <li><strong>Format:</strong> Square posts (1:1), stories, reels</li>
+                        <li><strong>Engagement:</strong> Use relevant hashtags, respond to comments</li>
+                    </ul>
+                </div>
+
+                <div class="platform-card">
+                    <h4><span class="platform-icon">🎨</span> Behance/Dribbble</h4>
+                    <ul>
+                        <li><strong>Tone:</strong> Portfolio-focused, design-centric</li>
+                        <li><strong>Frequency:</strong> 1-2 projects per month</li>
+                        <li><strong>Content:</strong> Full case studies, design shots</li>
+                        <li><strong>Best Practice:</strong> High-quality mockups, detailed descriptions</li>
+                        <li><strong>Format:</strong> Multi-image projects with context</li>
+                        <li><strong>Engagement:</strong> Like and comment on other designers' work</li>
+                    </ul>
+                </div>
+
+                <div class="platform-card">
+                    <h4><span class="platform-icon">🌐</span> Personal Website</h4>
+                    <ul>
+                        <li><strong>Purpose:</strong> Central hub for all work and contact</li>
+                        <li><strong>Update Frequency:</strong> Monthly or after major projects</li>
+                        <li><strong>Content:</strong> Portfolio, about, resume, contact</li>
+                        <li><strong>SEO Keywords:</strong> UX designer, accessibility, Houston</li>
+                        <li><strong>Technical:</strong> Fast loading, mobile responsive, accessible</li>
+                        <li><strong>Analytics:</strong> Track which projects get most views</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Hashtag Strategy -->
+            <div class="hashtag-section">
+                <h4>Strategic Hashtags</h4>
+
+                <div class="hashtag-category">
+                    <h5>Primary (Always Use)</h5>
+                    <div class="hashtag-list">
+                        <span class="hashtag">#UXDesign</span>
+                        <span class="hashtag">#UIDesign</span>
+                        <span class="hashtag">#UXUIDesigner</span>
+                        <span class="hashtag">#AccessibleDesign</span>
+                        <span class="hashtag">#InclusiveDesign</span>
+                    </div>
+                </div>
+
+                <div class="hashtag-category">
+                    <h5>Secondary (Rotate Based on Content)</h5>
+                    <div class="hashtag-list">
+                        <span class="hashtag">#ProductDesign</span>
+                        <span class="hashtag">#UserExperience</span>
+                        <span class="hashtag">#DesignSystems</span>
+                        <span class="hashtag">#WebDesign</span>
+                        <span class="hashtag">#MobileDesign</span>
+                        <span class="hashtag">#DesignThinking</span>
+                        <span class="hashtag">#UXResearch</span>
+                        <span class="hashtag">#Figma</span>
+                        <span class="hashtag">#UserInterface</span>
+                    </div>
+                </div>
+
+                <div class="hashtag-category">
+                    <h5>Job Search Specific</h5>
+                    <div class="hashtag-list">
+                        <span class="hashtag">#OpenToWork</span>
+                        <span class="hashtag">#HireDesigners</span>
+                        <span class="hashtag">#DesignJobs</span>
+                        <span class="hashtag">#UXJobs</span>
+                        <span class="hashtag">#HiringDesigners</span>
+                        <span class="hashtag">#RemoteDesignJobs</span>
+                    </div>
+                </div>
+
+                <div class="hashtag-category">
+                    <h5>Location-Based (if relevant)</h5>
+                    <div class="hashtag-list">
+                        <span class="hashtag">#HoustonDesigner</span>
+                        <span class="hashtag">#TexasDesign</span>
+                        <span class="hashtag">#HTXDesign</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interview & Networking Talking Points -->
+        <section class="section">
+            <h2 class="section-title">Interview Talking Points</h2>
+            <p class="section-description">
+                Key points to emphasize in interviews, networking, and professional conversations.
+            </p>
+
+            <div class="brand-box">
+                <h3>Elevator Pitch (30 seconds)</h3>
+                <p>
+                    "I'm Sara McKee, a UX/UI designer specializing in accessible, user-centered digital experiences. I've spent the last 6 years creating WCAG-compliant interfaces that prove accessibility and beauty aren't competing values—they elevate each other. My work ranges from mobile apps to comprehensive design systems, always rooted in user research and inclusive design principles. I'm passionate about creating experiences that work beautifully for everyone."
+                </p>
+            </div>
+
+            <div class="brand-box">
+                <h3>Why Accessibility Matters to You</h3>
+                <p>
+                    "Early in my career, I worked on a project where we retrofitted accessibility features after launch. It was clunky, expensive, and frankly disappointing. That experience taught me that accessibility should be foundational, not an afterthought. Since then, I've seen how accessible design constraints actually push me to create more thoughtful, more elegant solutions. When you design for edge cases, you improve the experience for everyone. That's what excites me about inclusive design—it makes me a better designer."
+                </p>
+            </div>
+
+            <div class="brand-box">
+                <h3>Handling Design Challenges</h3>
+                <p>
+                    "I approach challenges by first deeply understanding the constraints—whether that's technical limitations, tight timelines, or conflicting stakeholder needs. Then I look for creative solutions that satisfy multiple requirements simultaneously. For example, on the IncluDesign project, we needed high contrast for accessibility but didn't want it to feel clinical. The solution was a sophisticated color system with strong contrast ratios but rich, warm tones. It met WCAG standards while maintaining the brand's premium feel."
+                </p>
+            </div>
+        </section>
+
+        <!-- Do's and Don'ts -->
+        <section class="section">
+            <h2 class="section-title">Communication Do's & Don'ts</h2>
+            
+            <div class="tone-grid">
+                <div class="tone-card" style="border-top: 5px solid #28a745;">
+                    <h4 style="color: #28a745;">✓ Do</h4>
+                    <ul class="tone-list">
+                        <li>Lead with impact and results</li>
+                        <li>Use specific examples and metrics</li>
+                        <li>Explain your design decisions</li>
+                        <li>Show empathy for user needs</li>
+                        <li>Acknowledge team collaboration</li>
+                        <li>Share lessons learned</li>
+                        <li>Ask thoughtful questions</li>
+                        <li>Follow up promptly</li>
+                    </ul>
+                </div>
+
+                <div class="tone-card" style="border-top: 5px solid #dc3545;">
+                    <h4 style="color: #dc3545;">✗ Don't</h4>
+                    <ul class="tone-list">
+                        <li>Oversell or exaggerate capabilities</li>
+                        <li>Dismiss feedback or constraints</li>
+                        <li>Get defensive about design choices</li>
+                        <li>Use excessive design jargon</li>
+                        <li>Bad-mouth previous employers</li>
+                        <li>Make promises you can't keep</li>
+                        <li>Post controversial opinions</li>
+                        <li>Ignore accessibility in examples</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
