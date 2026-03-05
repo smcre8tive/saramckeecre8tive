@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sara McKee — Digital Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <style>
+        :root {
+            --ink: #0e0e0e;
+            --paper: #f7f4ef;
+            --gold: #b8922a;
+            --gold-light: #e8d5a3;
+            --muted: #888;
+            --card-bg: #1a1814;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            background: var(--paper);
+            color: var(--ink);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom cursor */
+        .cursor {
+            width: 10px; height: 10px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease;
+            transform: translate(-50%, -50%);
+        }
+        .cursor-ring {
+            width: 36px; height: 36px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.4s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+            transform: translate(-50%, -50%);
+            opacity: 0.6;
+        }
+        body.hovering .cursor { width: 16px; height: 16px; }
+        body.hovering .cursor-ring { width: 56px; height: 56px; opacity: 0.3; }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            z-index: 100;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem; font-weight: 400;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--ink); text-decoration: none;
+        }
+        .nav-links { list-style: none; display: flex; gap: 2.5rem; }
+        .nav-links a {
+            color: var(--ink); text-decoration: none;
+            font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+            position: relative; padding-bottom: 2px;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 1px; background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-left {
+            display: flex; flex-direction: column;
+            justify-content: flex-end;
+            padding: 8rem 3rem 5rem 3rem;
+            position: relative; z-index: 2;
+        }
+        .hero-tag {
+            font-size: 0.72rem; letter-spacing: 0.25em;
+            text-transform: uppercase; color: var(--gold);
+            margin-bottom: 1.5rem;
+            opacity: 0; transform: translateY(12px);
+            animation: reveal 0.8s ease 0.2s forwards;
+        }
+        .hero-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 6vw, 6.5rem);
+            font-weight: 900; line-height: 0.95;
+            letter-spacing: -0.02em; color: var(--ink);
+            opacity: 0; transform: translateY(20px);
+            animation: reveal 0.9s ease 0.3s forwards;
+        }
+        .hero-name em { font-style: italic; font-weight: 400; color: var(--gold); }
+        .hero-divider {
+            width: 60px; height: 1px; background: var(--gold);
+            margin: 2rem 0;
+            opacity: 0; animation: reveal 0.8s ease 0.6s forwards;
+        }
+        .hero-proposition {
+            font-size: 1rem; line-height: 1.7; color: #444;
+            max-width: 380px;
+            opacity: 0; transform: translateY(12px);
+            animation: reveal 0.9s ease 0.7s forwards;
+        }
+        .hero-cta {
+            margin-top: 2.5rem;
+            display: inline-flex; align-items: center; gap: 1rem;
+            text-decoration: none; color: var(--ink);
+            font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+            opacity: 0; animation: reveal 0.8s ease 0.9s forwards;
+            transition: color 0.3s ease;
+        }
+        .hero-cta:hover { color: var(--gold); }
+        .hero-cta:hover .cta-line { transform: translateX(6px); background: var(--gold); }
+        .cta-line {
+            width: 40px; height: 1px; background: var(--ink);
+            transition: transform 0.3s ease, background 0.3s ease;
+            position: relative;
+        }
+        .cta-line::after {
+            content: ''; position: absolute; right: 0; top: -3px;
+            width: 7px; height: 7px;
+            border-right: 1px solid currentColor;
+            border-top: 1px solid currentColor;
+            transform: rotate(45deg);
+        }
+
+        /* Hero right */
+        .hero-right { position: relative; overflow: hidden; }
+        .hero-bg-text {
+            position: absolute; bottom: -0.05em; right: -0.05em;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(10rem, 18vw, 22rem);
+            font-weight: 900; line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(184,146,42,0.12);
+            pointer-events: none; user-select: none; white-space: nowrap;
+        }
+        .hero-scroll-hint {
+            position: absolute; bottom: 3rem; right: 3rem;
+            display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+            opacity: 0; animation: reveal 1s ease 1.2s forwards;
+        }
+        .scroll-label {
+            font-size: 0.65rem; letter-spacing: 0.2em;
+            text-transform: uppercase; color: var(--muted);
+            writing-mode: vertical-rl;
+        }
+        .scroll-line {
+            width: 1px; height: 60px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollPulse 2s ease-in-out infinite 1.5s;
+        }
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* STATS STRIP */
+        .stats-strip {
+            background: var(--ink);
+            padding: 1.5rem 3rem;
+            display: flex; gap: 3rem; align-items: center; overflow: hidden;
+        }
+        .stat { display: flex; align-items: baseline; gap: 0.75rem; flex-shrink: 0; }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem; color: var(--gold); font-weight: 400;
+        }
+        .stat-label {
+            font-size: 0.72rem; letter-spacing: 0.12em;
+            text-transform: uppercase; color: rgba(255,255,255,0.45);
+        }
+        .stat-sep { width: 1px; height: 28px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+
+        /* WORK SECTION */
+        .work-section { padding: 7rem 3rem 5rem; }
+        .section-header {
+            display: flex; justify-content: space-between;
+            align-items: flex-end; margin-bottom: 4rem;
+        }
+        .section-label {
+            font-size: 0.72rem; letter-spacing: 0.25em;
+            text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 900; line-height: 1; color: var(--ink);
+        }
+        .section-title em { font-style: italic; font-weight: 400; }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+        }
+        .case-study-card {
+            position: relative; height: 520px; overflow: hidden;
+            background: var(--card-bg); cursor: pointer;
+        }
+        .case-study-card:first-child { grid-column: 1 / -1; height: 600px; }
+
+        .card-image {
+            position: absolute; inset: 0;
+            background-size: cover; background-position: center;
+            transition: transform 0.8s cubic-bezier(0.4,0,0.2,1), filter 0.5s ease;
+            filter: brightness(0.65) saturate(0.9);
+        }
+        .case-study-card:hover .card-image {
+            transform: scale(1.04);
+            filter: brightness(0.45) saturate(0.7);
+        }
+        .card-number {
+            position: absolute; top: 2rem; left: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem; color: rgba(255,255,255,0.3);
+            letter-spacing: 0.15em; z-index: 2;
+        }
+        .card-tag {
+            position: absolute; top: 2rem; right: 2rem;
+            font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--gold-light);
+            border: 1px solid rgba(184,146,42,0.4);
+            padding: 5px 14px; border-radius: 2px; z-index: 2;
+            background: rgba(184,146,42,0.08); backdrop-filter: blur(8px);
+        }
+        .card-content {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 2.5rem; z-index: 2;
+            background: linear-gradient(to top, rgba(14,14,14,0.95) 0%, rgba(14,14,14,0.6) 60%, transparent 100%);
+            transform: translateY(6px); transition: transform 0.4s ease;
+        }
+        .case-study-card:hover .card-content { transform: translateY(0); }
+
+        .card-result {
+            font-size: 0.72rem; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--gold);
+            margin-bottom: 0.6rem;
+            opacity: 0; transform: translateY(8px);
+            transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+        }
+        .case-study-card:hover .card-result { opacity: 1; transform: translateY(0); }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-weight: 400; color: #fff; margin-bottom: 1rem; line-height: 1.2;
+        }
+        .card-skills { display: flex; flex-wrap: wrap; gap: 6px; }
+        .skill-pill {
+            font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+            color: rgba(255,255,255,0.45);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 4px 10px; border-radius: 1px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .case-study-card:hover .skill-pill {
+            color: rgba(255,255,255,0.75);
+            border-color: rgba(255,255,255,0.2);
+        }
+        .card-arrow {
+            position: absolute; bottom: 2.5rem; right: 2.5rem;
+            width: 44px; height: 44px;
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; z-index: 3;
+            opacity: 0; transform: scale(0.85);
+            transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+        }
+        .case-study-card:hover .card-arrow {
+            opacity: 1; transform: scale(1); border-color: var(--gold);
+        }
+
+        /* AVAILABILITY BANNER */
+        .availability {
+            margin: 4rem 3rem;
+            padding: 3rem;
+            border: 1px solid rgba(184,146,42,0.25);
+            display: flex; justify-content: space-between; align-items: center;
+            position: relative; overflow: hidden;
+        }
+        .availability::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(184,146,42,0.04) 0%, transparent 60%);
+        }
+        .avail-status {
+            display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.75rem;
+        }
+        .avail-dot {
+            width: 7px; height: 7px;
+            background: #5cb85c; border-radius: 50%;
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+        @keyframes dotPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(92,184,92,0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(92,184,92,0); }
+        }
+        .avail-status-text {
+            font-size: 0.72rem; letter-spacing: 0.2em;
+            text-transform: uppercase; color: #5cb85c;
+        }
+        .avail-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 900; color: var(--ink);
+        }
+        .avail-heading em { font-style: italic; color: var(--gold); }
+
+        .avail-cta {
+            display: inline-flex; align-items: center; gap: 1rem;
+            padding: 1rem 2rem; background: var(--ink);
+            color: #fff; text-decoration: none;
+            font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+            transition: background 0.3s ease, gap 0.3s ease;
+            position: relative; z-index: 1;
+        }
+        .avail-cta:hover { background: var(--gold); gap: 1.5rem; }
+
+        /* FOOTER */
+        footer {
+            background: var(--ink); padding: 2.5rem 3rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .footer-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem; color: rgba(255,255,255,0.35); letter-spacing: 0.1em;
+        }
+        .social-links { display: flex; gap: 1.5rem; }
+        .social-links a {
+            color: rgba(255,255,255,0.35); text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover { color: var(--gold); }
+
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @keyframes reveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 6rem; }
+            .hero-right { display: none; }
+            .hero-left { padding: 2rem 1.5rem 4rem; }
+            .grid { grid-template-columns: 1fr; }
+            .case-study-card:first-child { height: 420px; }
+            .case-study-card { height: 400px; }
+            nav { padding: 1.25rem 1.5rem; }
+            .stats-strip { gap: 1.5rem; flex-wrap: wrap; padding: 1.5rem; }
+            .work-section { padding: 4rem 1.5rem 3rem; }
+            .availability { flex-direction: column; gap: 2rem; margin: 2rem 1.5rem; padding: 2rem 1.5rem; }
+            footer { flex-direction: column; gap: 1.5rem; padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav>
+        <a href="index.html" class="nav-logo">Sara McKee</a>
+        <ul class="nav-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="resume.pdf" target="_blank">Résumé</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-left">
+            <p class="hero-tag">Digital Designer — Available for Freelance</p>
+            <h1 class="hero-name">
+                Design<br>that <em>works.</em>
+            </h1>
+            <div class="hero-divider"></div>
+            <p class="hero-proposition">
+                I help small businesses and early-stage startups turn their digital presence into something that actually works — websites that sell, designs that communicate, and content that builds trust.
+            </p>
+            <a href="mailto:your@email.com" class="hero-cta">
+                <span>Start a project</span>
+                <span class="cta-line"></span>
+            </a>
+        </div>
+        <div class="hero-right">
+            <div class="hero-bg-text">Work</div>
+            <div class="hero-scroll-hint">
+                <span class="scroll-label">Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-strip reveal">
+        <div class="stat">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Years of experience</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+            <span class="stat-number">↑</span>
+            <span class="stat-label">Social growth for current client</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+            <span class="stat-number">1st</span>
+            <span class="stat-label">Artwork sold via redesigned site</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+            <span class="stat-number">4</span>
+            <span class="stat-label">Case studies</span>
+        </div>
+    </div>
+
+    <section class="work-section">
+        <div class="section-header reveal">
+            <div>
+                <p class="section-label">Selected Work</p>
+                <h2 class="section-title">Projects that <em>moved</em><br>the needle</h2>
+            </div>
+        </div>
+        <div class="grid" id="gallery"></div>
+    </section>
+
+    <div class="availability reveal">
+        <div>
+            <div class="avail-status">
+                <div class="avail-dot"></div>
+                <span class="avail-status-text">Available for new projects</span>
+            </div>
+            <h3 class="avail-heading">Let's build something <em>worth showing.</em></h3>
+        </div>
+        <a href="mailto:your@email.com" class="avail-cta">Get in touch →</a>
+    </div>
+
+    <footer>
+        <span class="footer-name">Sara McKee © 2026</span>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/sara-mckee-a0807945" target="_blank" aria-label="LinkedIn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://instagram.com/saramckee" target="_blank" aria-label="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Custom cursor
+        const cursor = document.getElementById('cursor');
+        const ring = document.getElementById('cursorRing');
+        let mx = 0, my = 0, rx = 0, ry = 0;
+
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            cursor.style.left = mx + 'px';
+            cursor.style.top = my + 'px';
+        });
+
+        function animateRing() {
+            rx += (mx - rx) * 0.12;
+            ry += (my - ry) * 0.12;
+            ring.style.left = rx + 'px';
+            ring.style.top = ry + 'px';
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        document.querySelectorAll('a, button, .case-study-card').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
+
+        // Case studies
+        const caseStudies = [
+            {
+                title: 'Eva Konopka Art Website',
+                category: 'Web Design',
+                result: 'Client sold her first artwork online after launch',
+                skills: ['UX Design', 'Redesign', 'B2C', 'Sales'],
+                image: 'img/evakonopka/hero2.jpeg',
+                link: 'evakonopkaart.html'
+            },
+            {
+                title: 'IncluDesign Projector App',
+                category: 'UX Design',
+                result: '',
+                skills: ['Interactive Design', 'Inclusive Design', 'Accessibility'],
+                image: 'img/includesign/hero.jpeg',
+                link: 'includesign.html'
+            },
+            {
+                title: 'SoloDareity Travel Web-App',
+                category: 'UX Design',
+                result: '',
+                skills: ['Web-App Design', 'Responsive Design', 'User Research', 'User Testing'],
+                image: 'img/solodareity/hero.jpeg',
+                link: 'solodareity.html'
+            },
+            {
+                title: 'ProcrastiGreat Planning App',
+                category: 'UI Design',
+                result: '',
+                skills: ['Style Guide', 'Icon Design', 'Mobile'],
+                image: 'img/procrastigreat/mock2.jpeg',
+                link: 'procrastigreat.html'
+            },
+        ];
+
+        const gallery = document.getElementById('gallery');
+        caseStudies.forEach((study, i) => {
+            const card = document.createElement('div');
+            card.className = 'case-study-card reveal';
+            const resultHTML = study.result ? `<p class="card-result">↳ ${study.result}</p>` : '';
+            card.innerHTML = `
+                <div class="card-image" style="background-image: url('${study.image}')"></div>
+                <span class="card-number">0${i + 1}</span>
+                <span class="card-tag">${study.category}</span>
+                <div class="card-content">
+                    ${resultHTML}
+                    <h3 class="card-title">${study.title}</h3>
+                    <div class="card-skills">
+                        ${study.skills.map(s => `<span class="skill-pill">${s}</span>`).join('')}
+                    </div>
+                </div>
+                <div class="card-arrow">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+            `;
+            card.addEventListener('click', () => { window.location.href = study.link; });
+            gallery.appendChild(card);
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, idx) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), idx * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
