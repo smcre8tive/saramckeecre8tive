@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function(){
+  var s=document.createElement('style');
+  s.textContent='#fc{position:fixed;inset:0;z-index:99999;background:#0f1014;pointer-events:none;transition:opacity .15s ease;}#fc.out{opacity:0;pointer-events:none;}';
+  document.head.appendChild(s);
+  var d=document.createElement('div');d.id='fc';
+  document.addEventListener('DOMContentLoaded',function(){
+    d.classList.add('out');
+    setTimeout(function(){if(d.parentNode)d.parentNode.removeChild(d);},160);
+  });
+  document.addEventListener('readystatechange',function(){
+    if(document.readyState==='interactive'&&document.body&&!document.getElementById('fc')){
+      document.body.insertBefore(d,document.body.firstChild);
+    }
+  });
+  window.addEventListener('pageshow',function(e){
+    if(e.persisted){
+      var el=document.getElementById('fc');if(el&&el.parentNode)el.parentNode.removeChild(el);
+      var lo=document.getElementById('loader');if(lo&&lo.parentNode)lo.parentNode.removeChild(lo);
+    }
+  });
+})();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sara McKee — Digital Designer</title>
@@ -18,7 +41,7 @@ body{font-family:'Lexend',sans-serif;font-weight:300;-webkit-font-smoothing:anti
 
 /* LOADER */
 #loader{position:fixed;inset:0;z-index:900;background:#0f1014;display:flex;align-items:center;justify-content:center;transition:opacity 1s cubic-bezier(.76,0,.24,1);}
-#loader.out{opacity:0;pointer-events:none;}
+#loader.out{opacity:0;pointer-events:none;transition:opacity .45s cubic-bezier(.76,0,.24,1);}
 .loader-name{font-family:'Spectral',Georgia,serif;font-size:clamp(2.5rem,7vw,5.5rem);font-weight:600;font-style:italic;color:#FDFDFD;letter-spacing:-.03em;overflow:hidden;}
 .loader-name span{display:block;transform:translateY(110%);animation:liftIn 1s cubic-bezier(.76,0,.24,1) .1s both;}
 @keyframes liftIn{to{transform:translateY(0)}}
@@ -62,10 +85,10 @@ body{font-family:'Lexend',sans-serif;font-weight:300;-webkit-font-smoothing:anti
 .slide-cta:hover{gap:1.1rem;opacity:.75;}
 .slide-cta svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
 
-/* NAV — highest z-index among chrome elements */
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.8rem 3rem;display:flex;align-items:center;justify-content:space-between;pointer-events:none;color:#FDFDFD;}
 .nav-logo{color:inherit;font-family:'Spectral',Georgia,serif;font-size:.88rem;font-weight:600;text-decoration:none;letter-spacing:.08em;text-transform:uppercase;pointer-events:auto;opacity:0;animation:fadeUp .8s cubic-bezier(.76,0,.24,1) 1.15s both;transition:color .6s;display:flex;align-items:center;gap:.55rem;}
-.nav-logo-img{width:22px;height:22px;object-fit:contain;flex-shrink:0;opacity:.9;transition:opacity .4s cubic-bezier(.76,0,.24,1);}
+.nav-logo-img{width:22px;height:22px;object-fit:contain;flex-shrink:0;opacity:.9;}
 .nav-links{display:flex;align-items:center;gap:2rem;list-style:none;pointer-events:auto;opacity:0;animation:fadeUp .8s cubic-bezier(.76,0,.24,1) 1.3s both;}
 .nav-links a,.nav-links button{color:inherit;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:opacity .2s,color .6s;background:none;border:none;cursor:pointer;font-family:'Lexend',sans-serif;font-weight:300;padding:0;}
 .nav-links a:hover,.nav-links button:hover{opacity:.55;}
@@ -83,68 +106,215 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.8rem 3rem;display:
 .email-btn:hover .email-face-front,.email-btn.flipped .email-face-front{opacity:0;transform:translateY(-5px);}
 .email-btn:hover .email-face-back,.email-btn.flipped .email-face-back{opacity:1;transform:none;}
 
-/* SIDE DOTS — below nav */
-#side-dots{position:fixed;right:2rem;top:50%;transform:translateY(-50%);z-index:400;display:flex;flex-direction:column;gap:.8rem;opacity:0;animation:fadeUp .8s cubic-bezier(.76,0,.24,1) 1.5s both;}
+/* SIDE DOTS */
+#side-dots{position:fixed;right:2rem;top:50%;transform:translateY(-50%);z-index:500;display:flex;flex-direction:column;gap:.8rem;opacity:0;animation:fadeUp .8s cubic-bezier(.76,0,.24,1) 1.5s both;}
 .s-dot{width:7px;height:7px;border-radius:50%;border:1.5px solid currentColor;opacity:.3;cursor:pointer;transition:opacity .3s,transform .3s,background .3s;background:transparent;padding:0;}
 .s-dot.active{opacity:1;background:currentColor;transform:scale(1.35);}
 .s-dot:hover:not(.active){opacity:.6;}
 
-/* COUNTER — below nav so it never overlaps nav text */
-#counter{position:fixed;bottom:2.5rem;right:3rem;z-index:400;font-family:'Spectral',Georgia,serif;font-style:italic;font-size:.9rem;display:flex;align-items:baseline;gap:.35rem;opacity:0;animation:fadeUp .8s cubic-bezier(.76,0,.24,1) 1.6s both;transition:color .6s;}
+/* COUNTER */
+#counter{position:fixed;bottom:2.5rem;right:3rem;z-index:500;font-family:'Spectral',Georgia,serif;font-style:italic;font-size:.9rem;display:flex;align-items:baseline;gap:.35rem;opacity:0;animation:fadeUp .8s cubic-bezier(.76,0,.24,1) 1.6s both;transition:color .6s;}
 #ctr-num{overflow:hidden;display:inline-block;line-height:1.3;}
 .ctr-inner{display:block;transition:transform .38s cubic-bezier(.76,0,.24,1);}
 #ctr-sep,#ctr-total{opacity:.38;font-style:normal;font-size:.6rem;letter-spacing:.1em;}
 
-/* SCROLL HINT */
-#scroll-hint{position:fixed;left:3rem;bottom:2.6rem;z-index:400;display:flex;align-items:center;gap:.7rem;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;opacity:0;animation:fadeUp .8s cubic-bezier(.76,0,.24,1) 1.7s both;transition:color .6s;}
+/* SCROLL HINT — updated to say "Navigate" since we removed scroll-to-advance */
+#scroll-hint{position:fixed;left:3rem;bottom:2.6rem;z-index:500;display:flex;align-items:center;gap:.7rem;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;opacity:0;animation:fadeUp .8s cubic-bezier(.76,0,.24,1) 1.7s both;transition:color .6s;}
 .sh-line{width:28px;height:1px;background:currentColor;transform-origin:left;animation:lineGrow 2.4s cubic-bezier(.76,0,.24,1) infinite;}
 
 /* AVAIL */
-#avail{position:fixed;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:400;display:flex;align-items:center;gap:.5rem;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid currentColor;border-radius:100px;padding:.4rem 1rem;opacity:0;animation:fadeUp .8s cubic-bezier(.76,0,.24,1) 1.8s both;transition:color .6s,border-color .6s;white-space:nowrap;}
+#avail{position:fixed;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:500;display:flex;align-items:center;gap:.5rem;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid currentColor;border-radius:100px;padding:.4rem 1rem;opacity:0;animation:fadeUp .8s cubic-bezier(.76,0,.24,1) 1.8s both;transition:color .6s,border-color .6s;white-space:nowrap;}
 .avail-dot{width:6px;height:6px;border-radius:50%;background:#6db98a;animation:blink 2s ease-in-out infinite;flex-shrink:0;}
 
 /* MOBILE */
 @media(max-width:768px){
-  html,body{overflow:auto;height:auto;}
-  #slides,#side-dots,#counter,#scroll-hint,#avail,nav{display:none!important;}
+  html,body{overflow:hidden;height:100%;} /* lock body — track handles scrolling */
+  #slides,#side-dots,#counter,#scroll-hint,#avail,nav:not(.m-nav){display:none!important;}
   .mobile-only{display:block!important;}
 }
 .mobile-only{display:none;}
-.m-wrap{background:#0f1014;}
-.m-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.3rem 1.4rem;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(0,0,0,.5),transparent);}
-.m-nav a{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:#FDFDFD;}
-.m.nav-logo{color:inherit;font-family:'Spectral',Georgia,serif;font-weight:600;display:flex;align-items:center;gap:.55rem;}
-.m-hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem 1.5rem 4rem;position:relative;overflow:hidden;}
-.m-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
-.m-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8) 0%,rgba(0,0,0,.15) 55%);}
-.m-hero-content{position:relative;z-index:1;color:#FDFDFD;}
-.m-eye{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;opacity:.65;margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem;}
-.m-eye::before{content:'';width:14px;height:1px;background:#FDFDFD;display:block;}
-.m-h1{font-family:'Spectral',Georgia,serif;font-size:clamp(3.2rem,13vw,5.5rem);font-weight:800;line-height:.88;letter-spacing:-.04em;margin-bottom:1.2rem;}
-.m-h1 em{font-style:italic;}
-.m-desc{font-size:1rem;line-height:1.75;opacity:.75;max-width:34ch;margin-bottom:1.8rem;}
-.m-cta{display:inline-flex;align-items:center;gap:.5rem;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#FDFDFD;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.45);padding-bottom:.2rem;}
-.m-projects{padding:2.5rem 1.4rem 4rem;}
-.m-proj-label{font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(253,253,253,.4);margin-bottom:1.8rem;display:flex;align-items:center;gap:.45rem;}
-.m-proj-label::before{content:'';width:12px;height:1px;background:rgba(253,253,253,.4);display:block;}
-.m-card{display:flex;flex-direction:column;text-decoration:none;border-radius:10px;overflow:hidden;margin-bottom:1.2rem;}
-.m-card-img{width:100%;aspect-ratio:16/9;overflow:hidden;}
-.m-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;}
-.m-card:hover .m-card-img img{transform:scale(1.04);}
-.m-card-body{padding:1.2rem 1.3rem 1.5rem;}
-.m-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;}
-.m-card-num{font-family:'Spectral',Georgia,serif;font-style:italic;font-size:1.8rem;font-weight:600;opacity:.1;line-height:1;}
-.m-card-cat{font-size:.53rem;letter-spacing:.16em;text-transform:uppercase;opacity:.6;}
-.m-card-title{font-family:'Spectral',Georgia,serif;font-size:1.5rem;font-weight:800;line-height:.92;letter-spacing:-.03em;margin-bottom:.6rem;}
-.m-card-title em{font-style:italic;font-weight:600;}
-.m-card-desc{font-size:.9rem;line-height:1.7;opacity:.7;margin-bottom:.9rem;}
-.m-card-cta{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:.4rem;opacity:.8;}
-.m-card-cta svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ─── MOBILE HORIZONTAL SCROLL ─────────────────────────────────── */
+.m-wrap{
+  position:fixed;inset:0;
+  background:#0f1014;
+  overflow:hidden;
+}
+
+/* ── Fixed nav — name left, hamburger right ── */
+.m-nav{
+  position:absolute;top:0;left:0;right:0;z-index:10;
+  padding:1.4rem 1.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  pointer-events:none;
+}
+.m-nav > *{pointer-events:auto;}
+.m-nav-logo-link{
+  color:#FDFDFD;font-family:'Spectral',Georgia,serif;font-size:.82rem;
+  font-weight:700;text-decoration:none;letter-spacing:.1em;text-transform:uppercase;
+  display:flex;align-items:center;gap:.5rem;
+  text-shadow:0 1px 6px rgba(0,0,0,.35);
+}
+
+/* Hamburger */
+.m-hamburger{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  gap:5px;width:44px;height:44px;background:none;border:none;cursor:pointer;
+  padding:0;margin:-10px -12px -10px 0;
+}
+.m-hamburger span{
+  display:block;width:22px;height:1.5px;background:#FDFDFD;border-radius:2px;
+  transition:transform .35s cubic-bezier(.76,0,.24,1),opacity .25s;transform-origin:center;
+}
+.m-hamburger[aria-expanded="true"]{position:relative;z-index:600;}
+.m-hamburger[aria-expanded="true"] span{background:#FDFDFD !important;}
+.m-hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.m-hamburger[aria-expanded="true"] span:nth-child(2){opacity:0;transform:scaleX(0);}
+.m-hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+/* ── Dot row — below nav ── */
+#m-dots{
+  position:absolute;top:4.4rem;left:0;right:0;z-index:10;
+  display:flex;justify-content:center;gap:.6rem;
+  padding:.4rem 0;pointer-events:none;
+}
+.m-dot{
+  width:8px;height:8px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.55);
+  background:transparent;padding:0;cursor:pointer;
+  pointer-events:auto;
+  transition:background .3s,border-color .3s,transform .28s cubic-bezier(.76,0,.24,1);
+}
+.m-dot.active{
+  background:#FDFDFD;border-color:#FDFDFD;
+  transform:scale(1.3);
+}
+
+/* ── Horizontal scroll track ── */
+#m-track{
+  position:absolute;inset:0;
+  display:flex;
+  overflow-x:scroll;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  z-index:1;
+}
+#m-track::-webkit-scrollbar{display:none;}
+
+/* ── Each fullscreen slide ── */
+/* ── Each fullscreen slide: flat bg color, content stacked ── */
+.m-slide{
+  flex:0 0 100vw;
+  width:100vw;
+  height:100svh;
+  scroll-snap-align:start;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  overflow:hidden;
+}
+
+/* Image card — sits above the text, centered */
+.m-slide-card{
+  position:absolute;
+  top:7rem;          /* below nav + dots */
+  left:50%;
+  transform:translateX(-50%);
+  width:88vw;
+  max-width:360px;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 18px 48px rgba(0,0,0,.28), 0 4px 12px rgba(0,0,0,.18);
+  aspect-ratio:4/3;
+  z-index:1;
+}
+.m-slide-card img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+}
+
+/* Subtle gradient at bottom so text stays readable */
+.m-slide::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;
+  height:55%;
+  background:linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 100%);
+  pointer-events:none;
+  z-index:2;
+}
+
+/* Text content — bottom of slide */
+.m-slide-body{
+  position:relative;z-index:3;
+  padding:0 1.5rem 4.5rem 1.5rem;
+}
+.m-slide-eye{
+  font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;
+  margin-bottom:.75rem;
+  display:flex;align-items:center;gap:.5rem;
+  opacity:.75;
+}
+.m-slide-eye::before{
+  content:'';flex-shrink:0;
+  width:16px;height:1px;background:currentColor;display:block;
+}
+.m-slide-title{
+  font-family:'Spectral',Georgia,serif;
+  font-size:clamp(3rem,12vw,4.8rem);
+  font-weight:800;line-height:.88;letter-spacing:-.04em;
+  margin-bottom:.9rem;
+}
+.m-slide-title em{font-style:italic;font-weight:600;}
+.m-slide-desc{
+  font-size:.92rem;line-height:1.72;
+  opacity:.78;max-width:34ch;margin-bottom:1.8rem;
+}
+.m-slide-cta{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;font-weight:400;
+  border-bottom:1.5px solid currentColor;
+  padding-bottom:.28rem;opacity:.9;
+  transition:gap .3s cubic-bezier(.76,0,.24,1);
+}
+.m-slide-cta:active{gap:1rem;}
+.m-slide-cta svg{
+  width:13px;height:13px;stroke:currentColor;fill:none;
+  stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;
+}
+
+/* Mobile menu drawer */
+#m-mobile-menu{
+  display:none;position:fixed;inset:0;z-index:550;
+  background:rgba(15,16,20,.97);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  flex-direction:column;justify-content:center;align-items:center;
+  gap:2.5rem;opacity:0;transition:opacity .3s cubic-bezier(.76,0,.24,1);
+}
+#m-mobile-menu.open{display:flex;}
+#m-mobile-menu.visible{opacity:1;}
+#m-mobile-menu a,#m-mobile-menu button{
+  color:#FDFDFD;font-family:'Lexend',sans-serif;
+  font-size:1rem;letter-spacing:.18em;text-transform:uppercase;
+  text-decoration:none;background:none;border:none;cursor:pointer;
+  opacity:.75;transition:opacity .2s;min-height:44px;display:flex;align-items:center;
+}
+#m-mobile-menu a:hover,#m-mobile-menu button:hover{opacity:1;}
+#m-mobile-menu .mob-socials{display:flex;gap:1.5rem;align-items:center;margin-top:1rem;}
+#m-mobile-menu .mob-social{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;opacity:.6;transition:opacity .2s;
+}
+#m-mobile-menu .mob-social:hover{opacity:1;}
+#m-mobile-menu .mob-social svg{width:18px;height:18px;fill:#FDFDFD;}
+
 :focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:2px;}
 </style>
-</head>
-<body>
-
+<meta name="theme-color" content="#0f1014">
+<style>html{background:#0f1014!important;}body{background:#0f1014!important;}</style>
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- LOADER -->
@@ -154,7 +324,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.8rem 3rem;display:
 
 <!-- DESKTOP NAV -->
 <nav aria-label="Site navigation">
-  <a class="nav-logo" href="index.html" id="nav-logo-el"><img src="img/logowhite.png" alt="SM logo" class="nav-logo-img" id="nav-logo-img">Sara McKee</a>
+  <a class="nav-logo" href="index.html" id="nav-logo-el"><img src="img/logo-white.png" alt="SM logo" class="nav-logo-img">Sara McKee</a>
   <ul class="nav-links" id="nav-links-el" role="list">
     <li><a href="about.html" id="nav-about">About</a></li>
     <li><a href="resume.pdf" target="_blank" rel="noopener" id="nav-resume">Résumé</a></li>
@@ -205,24 +375,43 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.8rem 3rem;display:
 
 <!-- MOBILE -->
 <main id="main-content" class="mobile-only m-wrap">
+
+  <!-- Fixed nav -->
   <nav class="m-nav" aria-label="Navigation">
-    <a class="m-nav-logo" href="index.html"><img src="img/logo-white.png" alt="SM logo" class="nav-logo-img">Sara McKee</a>
-    <a href="about.html">About</a>
+    <a class="m-nav-logo-link" href="index.html">
+      <img src="img/logo-white.png" alt="SM logo" class="nav-logo-img" width="22" height="22">Sara McKee
+    </a>
+    <button class="m-hamburger" id="m-hamburger-btn" aria-expanded="false" aria-controls="m-mobile-menu" aria-label="Open navigation menu">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
   </nav>
-  <div class="m-hero">
-    <div class="m-hero-bg" id="m-hero-bg"></div>
-    <div class="m-hero-content">
-      <p class="m-eye">Digital Designer</p>
-      <h1 class="m-h1">Design that<br><em>connects.</em></h1>
-      <p class="m-desc">10 years shaping how people learn. Product design in ed-tech. Available for freelance, contract, or full-time work.</p>
-      <a href="includesign.html" class="m-cta">View Work →</a>
-    </div>
-  </div>
-  <section class="m-projects" aria-labelledby="m-proj-hd">
-    <p class="m-proj-label" id="m-proj-hd">Selected Work</p>
-    <div id="m-cards"></div>
-  </section>
+
+  <!-- Dot indicators -->
+  <div id="m-dots" aria-hidden="true"></div>
+
+  <!-- Horizontal scroll track — built by JS -->
+  <div id="m-track" aria-label="Portfolio projects" role="region"></div>
+
+
 </main>
+
+<!-- MOBILE MENU DRAWER — outside m-wrap to avoid stacking context trap -->
+<div id="m-mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <button id="m-menu-close" aria-label="Close navigation menu" style="position:absolute;top:1.4rem;right:1.5rem;width:44px;height:44px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#FDFDFD" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="3" x2="19" y2="19"/><line x1="19" y1="3" x2="3" y2="19"/></svg>
+  </button>
+  <a href="about.html">About</a>
+  <a href="resume.pdf" target="_blank" rel="noopener">Résumé</a>
+  <button id="m-mob-email-btn" aria-label="Copy email address">Contact</button>
+  <div class="mob-socials">
+    <a class="mob-social" href="https://www.linkedin.com/in/sara-mckee-a0807945" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    <a class="mob-social" href="https://www.instagram.com/smcre8tive" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+  </div>
+</div>
 
 <script>
 const PROJECTS = [
@@ -231,7 +420,7 @@ const PROJECTS = [
     title:'IncluDesign<br><em>Projector App</em>',
     cat:'UX Design', tags:['Inclusive Design','Accessibility','Interactive Prototype'],
     img:'img/includesign/hero.jpeg', link:'includesign.html',
-    bg:'#0f1014', color:'#FDFDFD', logo:'img/logowhite.png',
+    bg:'#0f1014', color:'#FDFDFD',
     eyebrow:'UX Design — Case Study 01',
     desc:'Designing an accessible classroom projector app that empowers every student to engage and participate fully.'
   },
@@ -240,7 +429,7 @@ const PROJECTS = [
     title:'ProcrastiGreat<br><em>Planning App</em>',
     cat:'UI Design', tags:['Style Guide','Icon Design','Mobile UI'],
     img:'img/procrastigreat/mock2.jpeg', link:'procrastigreat.html',
-    bg:'#857028', color:'#FDFDFD', logo:'img/logowhite.png',
+    bg:'#857028', color:'#FDFDFD',
     eyebrow:'UI Design — Case Study 02',
     desc:'Visual systems and mobile UI that make productivity feel effortless — and even a little fun.'
   },
@@ -249,7 +438,7 @@ const PROJECTS = [
     title:'Eva Konopka<br><em>Art Website</em>',
     cat:'UX Design', tags:['Redesign','B2C','Sales Conversion'],
     img:'img/evakonopka/hero2.jpeg', link:'evakonopkaart.html',
-    bg:'#E7E2D0', color:'#0f1014', logo:'img/logoblack.png',
+    bg:'#E7E2D0', color:'#0f1014',
     eyebrow:'UX Design — Case Study 03',
     desc:'Turning a beautiful art practice into a website that sells — brand-true, conversion-ready, effortlessly navigable.'
   },
@@ -258,7 +447,7 @@ const PROJECTS = [
     title:'SoloDareity<br><em>Travel App</em>',
     cat:'UX Design', tags:['Responsive Design','User Research','Usability Testing'],
     img:'img/solodareity/hero.jpeg', link:'solodareity.html',
-    bg:'#4f564A', color:'#FDFDFD', logo:'img/logowhite.png',
+    bg:'#4f564A', color:'#FDFDFD',
     eyebrow:'UX Design — Case Study 04',
     desc:'Research-driven UX for solo travelers — building confidence, community, and discovery at every step.'
   }
@@ -314,22 +503,14 @@ const chromEls = {
   hint:   document.getElementById('scroll-hint'),
   avail:  document.getElementById('avail'),
 };
-const navLogoImg = document.getElementById('nav-logo-img');
 function applyColor(idx) {
   const c = PROJECTS[idx].color;
-  const l = PROJECTS[idx].logo;
   chromEls.logo.style.color  = c;
   chromEls.links.style.color = c;
   chromEls.ctr.style.color   = c;
   chromEls.hint.style.color  = c;
   chromEls.avail.style.color = c;
   chromEls.avail.style.borderColor = c;
-  // Fade logo out, swap src, fade back in
-  navLogoImg.style.opacity = '0';
-  setTimeout(() => {
-    navLogoImg.src = l;
-    navLogoImg.style.opacity = '.9';
-  }, 200);
   document.querySelectorAll('.s-dot').forEach((d,i) => {
     d.style.color = c;
     d.style.borderColor = c;
@@ -373,21 +554,28 @@ function goTo(idx) {
   setTimeout(()=>{ busy=false; },760);
 }
 
-/* ── WHEEL: robust single-advance per gesture ── */
-let wLastTime = 0;
-const W_COOLDOWN = 900; // ms between advances — matches slide transition duration
+/* ── WHEEL: accumulate delta to handle trackpad inertia cleanly ── */
+let wCD = false;
+let wAccum = 0;
+let wAccumTimer = null;
 
 window.addEventListener('wheel', e => {
   if (isMob()) return;
   e.preventDefault();
 
-  const now = Date.now();
-  // Ignore low-velocity trackpad drift and enforce cooldown
-  if (Math.abs(e.deltaY) < 20) return;
-  if (now - wLastTime < W_COOLDOWN) return;
+  wAccum += e.deltaY;
+  clearTimeout(wAccumTimer);
 
-  wLastTime = now;
-  e.deltaY > 0 ? goTo(cur + 1) : goTo(cur - 1);
+  // Reset accumulator if no new events in 80ms (end of gesture)
+  wAccumTimer = setTimeout(() => { wAccum = 0; }, 80);
+
+  if (wCD) return;
+  if (Math.abs(wAccum) < 60) return; // wait for intentional gesture
+
+  wCD = true;
+  wAccum > 0 ? goTo(cur + 1) : goTo(cur - 1);
+  wAccum = 0;
+  setTimeout(() => { wCD = false; }, 800);
 }, { passive: false });
 
 /* Touch */
@@ -406,27 +594,73 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  goTo(cur - 1);
 });
 
-/* Mobile cards */
-const mhb = document.getElementById('m-hero-bg');
-if (mhb) mhb.style.backgroundImage = `url('${PROJECTS[0].img}')`;
-const mCards = document.getElementById('m-cards');
-if (mCards) {
+/* ── MOBILE HORIZONTAL SCROLL ── */
+(function() {
+  const track = document.getElementById('m-track');
+  const dotsEl = document.getElementById('m-dots');
+  const mNav = document.querySelector('.m-nav');
+  const mLogo = document.querySelector('.m-nav-logo-link');
+  const mHamburger = document.getElementById('m-hamburger-btn');
+  if (!track || !dotsEl) return;
+
+  // Build slides
   PROJECTS.forEach((p, i) => {
-    const c = document.createElement('a');
-    c.className = 'm-card'; c.href = p.link;
-    c.setAttribute('aria-label', `View case study: ${p.plain}`);
-    c.style.cssText = `background:${p.bg};color:${p.color};`;
-    c.innerHTML = `
-      <div class="m-card-img"><img src="${p.img}" alt="${p.plain}" loading="${i===0?'eager':'lazy'}" width="400" height="225"></div>
-      <div class="m-card-body">
-        <div class="m-card-top"><span class="m-card-num">${p.num}</span><span class="m-card-cat">${p.cat}</span></div>
-        <div class="m-card-title">${p.title}</div>
-        <p class="m-card-desc">${p.desc}</p>
-        <div class="m-card-cta">Open Case Study <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    const slide = document.createElement('div');
+    slide.className = 'm-slide';
+    slide.setAttribute('role', 'article');
+    slide.setAttribute('aria-label', p.plain);
+    // For light-bg slides (Eva Konopka), invert nav text
+    slide.dataset.color = p.color;
+    slide.style.background = p.bg;
+    slide.innerHTML = `
+      <div class="m-slide-card">
+        <img src="${p.img}" alt="${p.plain}" loading="${i===0?'eager':'lazy'}" width="360" height="270">
+      </div>
+      <div class="m-slide-body" style="color:${p.color};">
+        <p class="m-slide-eye">${p.eyebrow}</p>
+        <${i===0?'h1':'h2'} class="m-slide-title">${p.title}</${i===0?'h1':'h2'}>
+        <p class="m-slide-desc">${p.desc}</p>
+        <a href="${p.link}" class="m-slide-cta" style="color:${p.color};" aria-label="Open case study: ${p.plain}">
+          Open Case Study <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>`;
-    mCards.appendChild(c);
+    track.appendChild(slide);
+
+    // Dot
+    const dot = document.createElement('button');
+    dot.className = 'm-dot' + (i===0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Project ${i+1}: ${p.plain}`);
+    dot.addEventListener('click', () => {
+      track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+    });
+    dotsEl.appendChild(dot);
   });
-}
+
+  // Sync nav + dots color to current slide
+  function syncChrome(idx) {
+    const col = PROJECTS[idx].color;
+    if (mLogo) { mLogo.style.color = col; mLogo.style.textShadow = col === '#0f1014' ? '0 1px 6px rgba(255,255,255,.2)' : '0 1px 6px rgba(0,0,0,.35)'; }
+    if (mHamburger) mHamburger.querySelectorAll('span').forEach(s => s.style.background = col);
+    dotsEl.querySelectorAll('.m-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === idx);
+      d.style.borderColor = i === idx ? col : (col === '#0f1014' ? 'rgba(0,0,0,.4)' : 'rgba(255,255,255,.5)');
+      d.style.background = i === idx ? col : 'transparent';
+    });
+  }
+  syncChrome(0);
+
+  // Update active dot + nav on scroll
+  let ticking = false;
+  track.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const idx = Math.round(track.scrollLeft / track.clientWidth);
+      syncChrome(idx);
+      ticking = false;
+    });
+  }, { passive: true });
+})();
 
 /* Email copy */
 const emailBtn = document.getElementById('email-btn');
@@ -442,14 +676,65 @@ function doFlip() {
 emailBtn.addEventListener('click', doFlip);
 emailBtn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); doFlip(); } });
 
+
+/* ── INDEX MOBILE HAMBURGER ── */
+(function() {
+  const btn = document.getElementById('m-hamburger-btn');
+  const menu = document.getElementById('m-mobile-menu');
+  const mobEmail = document.getElementById('m-mob-email-btn');
+  if (!btn || !menu) return;
+  function openMenu() {
+    menu.classList.add('open');
+    requestAnimationFrame(() => requestAnimationFrame(() => menu.classList.add('visible')));
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'Close navigation menu');
+    document.body.style.overflow = 'hidden';
+    const first = menu.querySelector('a, button');
+    if (first) first.focus();
+  }
+  function closeMenu() {
+    menu.classList.remove('visible');
+    setTimeout(() => menu.classList.remove('open'), 300);
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Open navigation menu');
+    document.body.style.overflow = '';
+    btn.focus();
+  }
+  btn.addEventListener('click', () => btn.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu());
+  const closeBtn = document.getElementById('m-menu-close');
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+  menu.addEventListener('click', e => { if (e.target === menu) closeMenu(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu(); });
+  if (mobEmail) {
+    mobEmail.addEventListener('click', () => {
+      navigator.clipboard.writeText('hello@saramckeedesign.com').catch(() => {});
+      mobEmail.textContent = 'Copied!';
+      setTimeout(() => { mobEmail.textContent = 'Contact'; }, 2500);
+      closeMenu();
+    });
+  }
+})();
+
 /* Loader */
-window.addEventListener('load', () => {
-  setTimeout(() => {
+(function(){
+  function dismissLoader(){
     const l = document.getElementById('loader');
-    l.classList.add('out');
-    setTimeout(() => l.remove(), 1050);
-  }, 900);
-});
+    if(!l) return;
+    setTimeout(() => {
+      l.classList.add('out');
+      setTimeout(() => { if(l.parentNode) l.parentNode.removeChild(l); }, 500);
+    }, 300);
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', dismissLoader);
+  } else {
+    dismissLoader();
+  }
+  // bfcache: remove loader instantly
+  window.addEventListener('pageshow', e => {
+    if(e.persisted){ const l = document.getElementById('loader'); if(l) l.parentNode.removeChild(l); }
+  });
+})();
 </script>
 </body>
 </html>
